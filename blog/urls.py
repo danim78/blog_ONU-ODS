@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from prueba import views
+#from prueba import views
+from post import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.hola_mundo),
+    #path('', views.hola_mundo),
+    path('post/nuevo', views.agregar_post, name = 'agregar_post'),
+
 ]
