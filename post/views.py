@@ -1,6 +1,6 @@
 from django.shortcuts import HttpResponse ,render, redirect, Http404
 from post.models import Post
-from post.forms import PostForm
+from post.forms import PostForm, BusquedaPost
 
 # Create your views here.
 
@@ -20,13 +20,41 @@ def agregar_post(request):
     return render(request, template, contexto)
 
 def listar_posts(request):
-    lista_posts = Post.objects.all()
+
+    search_form = BusquedaPost(request.GET or None)
+    if search_form.is_valid():
+        filtro_titulo = request.GET.get("titulo", "")
+        orden_post = request.GET.get("orden", None)
+        #param_categorias = request.GET.getlist("categoria")
+
+        posts = Post.objects.filter(titulo__icontains = filtro_titulo)
+
+        #if param_categorias:
+        #    posts = posts.filter(categoria__id__in = param_categorias)
+        if orden_post == "titulo":
+            posts= posts.order_by("titulo")
+        elif orden_post == "antiguo":
+            posts= posts.order_by("fecha_creado")
+        elif orden_post == "nuevo":
+            posts= posts.order_by("-fecha_creado")
+    else:
+        posts = Post.objects.all()
+
+    contexto = {"lista_posts":posts,
+                "search_form":search_form,
+                }
     template = "listar_posts.html"
-    contexto = {
-        "lista_posts": lista_posts,
-        #"formulario":formulario,
-    }
-    return render(request, template, contexto)
+    return render(request, template ,contexto)
+
+
+#def listar_posts(request):
+#    lista_posts = Post.objects.all()
+#    template = "listar_posts.html"
+#    contexto = {
+#        "lista_posts": lista_posts,
+#        #"formulario":formulario,
+#    }
+#    return render(request, template, contexto)
 
 def ver_post(request, id):
     try:
