@@ -7,11 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Nuevo post</h2>
-    <form action="" method = 'POST'>
+    <h1>BORRAR POST: {{post.titulo}}</h1>
+    <form action="{% url 'borrar_post' post.id %}" method="POST">
         {% csrf_token %}
-        {{ formulario.as_p }}
-        <input type="submit" value = 'Guardar'>
+        <p>Desea confirmar la eliminacion del post {{post.titulo}}?</p>
+        <a href="{% url 'ver_post' post.id %}">Cancelar</a>
+        <input type="submit" value="Aceptar">
     </form>
 </body>
 </html>

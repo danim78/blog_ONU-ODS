@@ -39,3 +39,29 @@ def ver_post(request, id):
     }
     template = "ver_post.html"
     return render(request, template, contexto)
+
+def editar_post(request, id):
+    post = Post.objects.get(pk=id)
+    formulario = PostForm(request.POST or None, instance=post)
+
+    if request.method == "POST":
+        if formulario.is_valid():
+            post = formulario.save()
+            return redirect("ver_post", post.id)
+
+    template = "agregar_post.html"
+    contexto = {
+        "formulario":formulario
+    }
+    return render(request, template, contexto)
+
+def borrar_post(request, id):
+    post = Post.objects.get(pk=id)
+    if request.method == "POST":
+        post.delete()
+        return redirect("listar_posts")
+    
+    template = "borrar_post.html"
+    contexto = {"post" : post}
+
+    return render(request, template, contexto)
