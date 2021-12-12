@@ -16,19 +16,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 #from prueba import views
-from post import views
+#from post import views
+import post.views
+import usuario.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', views.hola_mundo),
+    path('', usuario.views.inicio, name = 'inicio'),
     #agregar post
-    path('post/nuevo', views.agregar_post, name = 'agregar_post'),
+    path('post/nuevo', post.views.agregar_post, name = 'agregar_post'),
     #listar posts
-    path('posts/', views.listar_posts, name = 'listar_posts'),
+    path('posts/', post.views.listar_posts, name = 'listar_posts'),
     #ver post
-    path('post/<int:id>', views.ver_post, name = 'ver_post'),
+    path('post/<int:id>', post.views.ver_post, name = 'ver_post'),
     #editar post
-    path('post/<int:id>/editar/', views.editar_post, name="editar_post"),
+    path('post/<int:id>/editar/', post.views.editar_post, name="editar_post"),
     #borrar post
-    path('post/<int:id>/borrar/', views.borrar_post, name="borrar_post"),
+    path('post/<int:id>/borrar/', post.views.borrar_post, name="borrar_post"),
+    #agregar usuario
+    path('usuario/nuevo', usuario.views.nuevo_usuario, name = 'agregar_usuario'),
 ]

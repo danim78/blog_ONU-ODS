@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Alta nuevo usuario
+{% endblock titulo %}
+
+{% block contenido %}
+<h1>Esta es la página de alta para nuevos usuarios del blog_ONU-ODS</h1>
+<h2>Alta nuevo usuario</h2>
+<h3>Por favor ingrese sus datos</h3>
+    <form action="" method = 'POST'>
+        {% csrf_token %}
+        {{ formulario.as_p }}
+        <input type="submit" value = 'Guardar'>
+    </form>
+{% endblock contenido %}
