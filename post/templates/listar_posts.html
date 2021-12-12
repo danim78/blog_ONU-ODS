@@ -7,11 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Nuevo post</h2>
-    <form action="" method = 'POST'>
-        {% csrf_token %}
-        {{ formulario.as_p }}
-        <input type="submit" value = 'Crear post'>
-    </form>
+    <h2>POSTS</h2>
+
+    {% for post in lista_posts %}
+
+    <a href="{%url 'ver_post' post.id%}"><h2>{{post.titulo}}</h2></a>
+
+    {% endfor %}
 </body>
 </html>

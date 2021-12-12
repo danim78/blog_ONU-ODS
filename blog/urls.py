@@ -21,6 +21,11 @@ from post import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', views.hola_mundo),
+    #agregar post
     path('post/nuevo', views.agregar_post, name = 'agregar_post'),
+    #listar posts
+    path('posts/', views.listar_posts, name = 'listar_posts'),
+    #ver post
+    path('post/<int:id>', views.ver_post, name = 'ver_post'),
 
 ]

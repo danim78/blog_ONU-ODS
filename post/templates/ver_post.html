@@ -7,11 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Nuevo post</h2>
-    <form action="" method = 'POST'>
-        {% csrf_token %}
-        {{ formulario.as_p }}
-        <input type="submit" value = 'Crear post'>
-    </form>
+    <h2>{{post.titulo}}</h2>
+    <p>{{post.contenido}}</p>
+    <p>Fecha de creacion: {{post.fecha_creado}}</p>
+    <p>Ultima modificacion: {{post.fecha_modificado}}</p>
+    <p>Categoria: {{post.categoria}}</p>
 </body>
 </html>
