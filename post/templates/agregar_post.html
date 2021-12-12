@@ -11,6 +11,7 @@
     <form action="" method = 'POST'>
         {% csrf_token %}
         {{ formulario.as_p }}
+        <a href="{% url 'listar_posts' %}">Cancelar</a>
         <input type="submit" value = 'Guardar'>
     </form>
 </body>

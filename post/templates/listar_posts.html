@@ -9,6 +9,14 @@
 <body>
     <h2>POSTS</h2>
 
+    <a href="{%url 'agregar_post' %}"><h5>Nuevo post</h5></a>
+
+    <h3>Buscar Post:</h3>
+    <form action="" method="get">
+        {{ search_form }}
+        <input type="submit" value="buscar">
+    </form>
+
     {% for post in lista_posts %}
 
     <a href="{%url 'ver_post' post.id%}"><h2>{{post.titulo}}</h2></a>
