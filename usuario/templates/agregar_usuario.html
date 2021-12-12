@@ -11,6 +11,7 @@ Alta nuevo usuario
     <form action="" method = 'POST'>
         {% csrf_token %}
         {{ formulario.as_p }}
+        <a href="/">Cancelar</a>
         <input type="submit" value = 'Guardar'>
     </form>
 {% endblock contenido %}
