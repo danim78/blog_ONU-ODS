@@ -14,26 +14,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-#from prueba import views
-#from post import views
-import post.views
-import usuario.views
+from django.urls import path, include
+# from apps.users.urls import urlUsers
+# from prueba import views
+# from post import views
+# import post.views
+# import usuario.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', views.hola_mundo),
-    path('', usuario.views.inicio, name = 'inicio'),
-    #agregar post
-    path('post/nuevo', post.views.agregar_post, name = 'agregar_post'),
-    #listar posts
-    path('posts/', post.views.listar_posts, name = 'listar_posts'),
-    #ver post
-    path('post/<int:id>', post.views.ver_post, name = 'ver_post'),
-    #editar post
-    path('post/<int:id>/editar/', post.views.editar_post, name="editar_post"),
-    #borrar post
-    path('post/<int:id>/borrar/', post.views.borrar_post, name="borrar_post"),
-    #agregar usuario
-    path('usuario/nuevo', usuario.views.nuevo_usuario, name = 'agregar_usuario'),
+    path('', include('apps.users.urls')),
+    path('', include('apps.post.urls')),
+    # path('', views.hola_mundo),
+    # path('', usuario.views.inicio, name = 'inicio'),
+    # agregar usuario
+    # path('usuario/nuevo', usuario.views.nuevo_usuario, name = 'agregar_usuario'),
+    # path('user/', include('users.urls')),
 ]
+
+# urlpatterns = [
+#     path('index/', views.index, name='main-view'),
+#     path('bio/<username>/', views.bio, name='bio'),
+#     path('articles/<slug:title>/', views.article, name='article-detail'),
+#     path('articles/<slug:title>/<int:section>/', views.section, name='article-section'),
+#     path('blog/', include('blog.urls')),
+#     ...
+# ]

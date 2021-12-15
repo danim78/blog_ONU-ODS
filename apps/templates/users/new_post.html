@@ -1,0 +1,15 @@
+{% extends 'templates/base.html' %}
+
+{% block titulo %}
+Nuevo post
+{% endblock titulo %}
+
+{% block contenido %}
+    <h2>Nuevo post</h2>
+    <form action="" method = 'POST'>
+        {% csrf_token %}
+        {{ formulario.as_p }}
+        <a href="{% url 'listar_posts' %}">Cancelar</a>
+        <input type="submit" value = 'Guardar'>
+    </form>
+{% endblock contenido %}
