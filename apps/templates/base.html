@@ -4,7 +4,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>{% block title %}Simple blog{% endblock %}</title>
+      <title>{% block title %}Blog-ONU{% endblock %}</title>
       {% load bootstrap4 %}
       {% bootstrap_css %}
       {% load static %}
@@ -14,7 +14,7 @@
       <!-- Navigation -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
          <div class="container">
-            <a class="navbar-brand" href="{% url 'posts:blog' %}">Simple Blog</a>
+            <a class="navbar-brand" href="{% url 'posts:blog' %}">Blog-ONU</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -71,9 +71,9 @@
             </div>
             <!-- Side Widget -->
             <div class="card my-4">
-               <h5 class="card-header">Side Widget</h5>
+               <h5 class="card-header">Otra cosa</h5>
                <div class="card-body">
-                  You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                  Aquí van otras cosas que mas adelante lo pondremos
                </div>
             </div>
          </div>
@@ -81,7 +81,7 @@
       <!-- Footer -->
       <footer class="py-5 bg-dark">
          <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Simple Blog {% now "Y" %}</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Blog-ONU {% now "Y" %}</p>
          </div>
          <!-- /.container -->
       </footer>

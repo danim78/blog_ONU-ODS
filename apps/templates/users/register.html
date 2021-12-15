@@ -3,7 +3,7 @@
 {% block content %}
 <form class="form-signin" method="POST">
     {% csrf_token %}
-    <h1><a href="#" class="title-link">Simple Blog</a></h1>
+    <h1><a href="#" class="title-link">Blog-ONU</a></h1>
     <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
     <label for="id_email" class="sr-only">Email</label>
     <input type="email" name="email" id="id_email" class="form-control" placeholder="Email" required autofocus>
@@ -31,6 +31,6 @@
         {% endfor %}
     {% endif %}
     
-    <p class="mt-5 mb-3 text-muted">&copy; Simple Blog {% now "Y" %}</p>
+    <p class="mt-5 mb-3 text-muted">&copy; Blog-ONU {% now "Y" %}</p>
     </form>
 {% endblock %} 
