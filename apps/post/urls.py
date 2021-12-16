@@ -2,6 +2,7 @@ from django.urls import path
 from apps.post import views
 
 urlpatterns = [
+    path('', views.listar_posts, name = 'listar_posts'),
     #agregar post
     path('post/nuevo', views.agregar_post, name = 'agregar_post'),
     #listar posts
