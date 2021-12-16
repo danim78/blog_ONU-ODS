@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Nuevo post
+{% endblock titulo %}
+
+{% block contenido %}
+
+    <h2>{{post.titulo}}</h2>
+    {#<p>{{post.imagen}}</p> esto esta comentado #}
+    <p>{{post.contenido}}</p>
+    <p>Fecha de creacion: {{post.fecha_creado}}</p>
+    <p>Ultima modificacion: {{post.fecha_modificado}}</p>
+    <p>Categoria: {{post.categoria}}</p>
+
+    <a href="{%url 'editar_post' post.id %}"><p>Editar post</p></a>
+    
+    <a href="{%url 'borrar_post' post.id %}"><p>Borrar post</p></a>
+
+    <a href="{%url 'listar_posts' %}"><p>Volver a lista de posts</p></a>
+
+{% endblock contenido %}

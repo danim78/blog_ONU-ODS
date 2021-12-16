@@ -15,28 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from apps.users.urls import urlUsers
-# from prueba import views
-# from post import views
-# import post.views
-# import usuario.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('apps.users.urls')),
-    path('', include('apps.post.urls')),
-    # path('', views.hola_mundo),
-    # path('', usuario.views.inicio, name = 'inicio'),
-    # agregar usuario
-    # path('usuario/nuevo', usuario.views.nuevo_usuario, name = 'agregar_usuario'),
-    # path('user/', include('users.urls')),
+    path('',include('apps.post.urls')),
+    path('',include('apps.user.urls')),
 ]
-
-# urlpatterns = [
-#     path('index/', views.index, name='main-view'),
-#     path('bio/<username>/', views.bio, name='bio'),
-#     path('articles/<slug:title>/', views.article, name='article-detail'),
-#     path('articles/<slug:title>/<int:section>/', views.section, name='article-section'),
-#     path('blog/', include('blog.urls')),
-#     ...
-# ]
