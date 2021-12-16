@@ -1,11 +1,11 @@
 from django.shortcuts import HttpResponse ,render, redirect, Http404
-from post.models import Post
-from post.forms import PostForm, BusquedaPost
+from apps.post.models import Post
+from apps.post.forms import PostForm, BusquedaPost
 
 # Create your views here.
 
 def agregar_post(request):
-    template = 'agregar_post.html'
+    template = 'post/agregar_post.html'
     
     formulario = PostForm(request.POST or None)
     if request.method == "POST":
@@ -43,7 +43,7 @@ def listar_posts(request):
     contexto = {"lista_posts":posts,
                 "search_form":search_form,
                 }
-    template = "listar_posts.html"
+    template = "post/listar_posts.html"
     return render(request, template ,contexto)
 
 
@@ -65,7 +65,7 @@ def ver_post(request, id):
     contexto = {
         "post": post
     }
-    template = "ver_post.html"
+    template = "post/ver_post.html"
     return render(request, template, contexto)
 
 def editar_post(request, id):
@@ -77,7 +77,7 @@ def editar_post(request, id):
             post = formulario.save()
             return redirect("ver_post", post.id)
 
-    template = "agregar_post.html"
+    template = "post/agregar_post.html"
     contexto = {
         "formulario":formulario
     }
@@ -89,7 +89,7 @@ def borrar_post(request, id):
         post.delete()
         return redirect("listar_posts")
     
-    template = "borrar_post.html"
+    template = "post/borrar_post.html"
     contexto = {"post" : post}
 
     return render(request, template, contexto)

@@ -1,7 +1,7 @@
 from django import forms
 from django.db.models import fields
 from django.contrib.auth.models import User
-from usuario.models import Usuario
+from apps.user.models import Usuario
 
 class UsuarioForm(forms.ModelForm):
     contraseña = forms.CharField(widget=forms.PasswordInput)

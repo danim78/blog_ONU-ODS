@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from usuario.models import Usuario
-from usuario.forms import UsuarioForm
+from apps.user.models import Usuario
+from apps.user.forms import UsuarioForm
 
 # Create your views here.
 
@@ -9,7 +9,7 @@ def inicio(request):
 
 
 def nuevo_usuario(request):
-    template = 'agregar_usuario.html'
+    template = 'user/agregar_usuario.html'
     
     formulario = UsuarioForm(request.POST or None)
     if request.method == "POST":
