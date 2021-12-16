@@ -1,7 +1,6 @@
 from django.urls import path
 from apps.post import views
 
-
 urlpatterns = [
     #agregar post
     path('post/nuevo', views.agregar_post, name = 'agregar_post'),

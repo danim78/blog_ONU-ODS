@@ -5,7 +5,9 @@ from apps.post.forms import PostForm, BusquedaPost
 # Create your views here.
 
 def agregar_post(request):
+
     template = 'post/agregar_post.html'
+
     
     formulario = PostForm(request.POST or None)
     if request.method == "POST":
@@ -43,7 +45,9 @@ def listar_posts(request):
     contexto = {"lista_posts":posts,
                 "search_form":search_form,
                 }
+
     template = "post/listar_posts.html"
+
     return render(request, template ,contexto)
 
 
@@ -65,7 +69,9 @@ def ver_post(request, id):
     contexto = {
         "post": post
     }
+
     template = "post/ver_post.html"
+
     return render(request, template, contexto)
 
 def editar_post(request, id):
@@ -77,7 +83,9 @@ def editar_post(request, id):
             post = formulario.save()
             return redirect("ver_post", post.id)
 
+
     template = "post/agregar_post.html"
+
     contexto = {
         "formulario":formulario
     }
@@ -89,7 +97,9 @@ def borrar_post(request, id):
         post.delete()
         return redirect("listar_posts")
     
+
     template = "post/borrar_post.html"
+
     contexto = {"post" : post}
 
     return render(request, template, contexto)
