@@ -6,6 +6,9 @@ from apps.post.forms import PostForm, BusquedaPost
 
 def agregar_post(request):
 
+    if not request.user.is_authenticated:
+        return redirect("login")
+
     template = 'post/agregar_post.html'
 
     
