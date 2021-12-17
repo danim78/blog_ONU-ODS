@@ -17,14 +17,14 @@ def iniciar_sesion(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request,user)
-                return redirect("listar_posts")
+                return redirect("/")
     return render(request, "user/login.html",{
         "form":form,
     })
 
 def cerrar_sesion(request):
     logout(request)
-    return redirect("listar_posts")
+    return redirect("/")
 
 def nuevo_usuario(request):
     if request.user.is_authenticated:

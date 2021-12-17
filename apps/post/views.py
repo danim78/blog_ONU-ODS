@@ -1,28 +1,43 @@
 from django.shortcuts import HttpResponse ,render, redirect, Http404
+from django.contrib.auth.decorators import login_required
 from apps.post.models import Post
 from apps.post.forms import PostForm, BusquedaPost
 
 # Create your views here.
 
-def agregar_post(request):
+#def agregar_post(request):
 
-    if not request.user.is_authenticated:
-        return redirect("login")
+ #   if not request.user.is_authenticated:
+ #       return redirect("login")
 
-    template = 'post/agregar_post.html'
+ #   template = 'post/agregar_post.html'
 
     
-    formulario = PostForm(request.POST, request.FILES  or None)
-    if request.method == "POST":
-        if formulario.is_valid():
-            post = formulario.save()
-            return redirect("listar_posts")
+ #   formulario = PostForm(request.POST, request.FILES  or None)
+ #   if request.method == "POST":
+ #       if formulario.is_valid():
+ #           post = formulario.save()
+ #           return redirect("listar_posts")
 
-    contexto = {
-        "formulario": formulario
-    }
+ #   contexto = {
+ #       "formulario": formulario
+ #   }
 
-    return render(request, template, contexto)
+ #   return render(request, template, contexto)
+
+@login_required(login_url='login')
+def agregar_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.autor = request.user
+            post.save()
+            return redirect('/')
+    else:
+        form = PostForm()
+        return render(request, 'post/agregar_post.html', {'form':form})
+
 
 def listar_posts(request):
 

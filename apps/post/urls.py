@@ -5,7 +5,8 @@ urlpatterns = [
     #inicio
     path('', views.listar_posts, name = 'inicio'),
     #agregar post
-    path('post/nuevo', views.agregar_post, name = 'agregar_post'),
+    path('post/nuevo', views.agregar_post, name='agregar_post'),
+    #path('post/nuevo', views.agregar_post, name = 'agregar_post'),
     #listar posts
     path('posts/', views.listar_posts, name = 'listar_posts'),
     #ver post
