@@ -3,7 +3,7 @@ from apps.post import views
 
 urlpatterns = [
     #inicio
-    path('', views.listar_posts, name = 'inicio'),
+    path('', views.inicio, name = 'inicio'),
     #agregar post
     path('post/nuevo', views.agregar_post, name='agregar_post'),
     #path('post/nuevo', views.agregar_post, name = 'agregar_post'),

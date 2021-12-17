@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+Home
+{% endblock titulo %}
+
+{% block contenido %}
+
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('static/dist/assets/img/home.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">   
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>ONU-ODS</h1>
+                        <span class="subheading">Un blog hecho con amor al planeta :)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+    
+                {% for post in lista_posts %}
+                                <!-- Post preview-->
+                                <div class="post-preview">
+                                    <a href="{%url 'ver_post' post.id%}">
+                                        <h2 class="post-title">{{post.titulo}}</h2>
+                                        <h3 class="post-subtitle">aca no se que iria</h3>
+                                    </a>
+                                    <p class="post-meta">
+                                        Posted by
+                                        <a href="#!">{{post.autor}}</a>
+                                        {{post.fecha_creado}}
+                                    </p>
+                                </div>
+                                <!-- Divider-->
+                                <hr class="my-4" />
+                {% endfor %}
+                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{%url 'listar_posts' %}">Mas →</a></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock contenido %}

@@ -1,23 +1,44 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 
 {% block titulo %}
-Nuevo post
+Post
 {% endblock titulo %}
 
 {% block contenido %}
 
-    <h2>{{post.titulo}}</h2>
-    <img src="{{post.imagen.url}}"/>
-    <p>{{post.contenido}}</p>
-    <p>Fecha de creacion: {{post.fecha_creado}}</p>
-    <p>Ultima modificacion: {{post.fecha_modificado}}</p>
-    <p>Autor: {{post.autor}}</p>
-    <p>Categoria: {{post.categoria}}</p>
+<header class="masthead" style="background-image: url('static/dist/assets/img/asd.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1> {{post.titulo}} </h1>
+                    <h2 class="subheading">{{post.categoria}}</h2>
+                    <span class="meta">
+                        Posted by
+                        <a href="#!">{{post.autor}}</a>
+                        {{post.fecha_creado}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+ <!-- Post Content-->
+ <article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                    <p>{{post.contenido}}</p>
+                </p>
+            </div>
+        </div>
+    </div>
+</article>
 
-    <a href="{%url 'editar_post' post.id %}"><p>Editar post</p></a>
-    
-    <a href="{%url 'borrar_post' post.id %}"><p>Borrar post</p></a>
-
-    <a href="{%url 'listar_posts' %}"><p>Volver a lista de posts</p></a>
+    {% if post.autor == user %}
+        <a href="{%url 'editar_post' post.id %}">Editar post</a><br>
+        <a href="{%url 'borrar_post' post.id %}">Borrar post</a><br>
+    {%endif%}
+    <a href="{%url 'listar_posts' %}">Volver a lista de posts</a>
 
 {% endblock contenido %}

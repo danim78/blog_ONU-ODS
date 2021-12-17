@@ -40,6 +40,14 @@ def agregar_post(request):
         return render(request, 'post/agregar_post.html', {'form':form})
 
 
+def inicio(request):
+    posts = Post.objects.all()
+
+    contexto = {"lista_posts":posts,
+                }
+    template = "inicio.html"
+    return render(request, template ,contexto)    
+
 def listar_posts(request):
 
     search_form = BusquedaPost(request.GET or None)
