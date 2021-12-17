@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Inicio de sesión {% endblock %}
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-sm-1 col-md-2"></div>
+        <div class="col-sm-10 col-md-8">
+            {% if next %}
+                <form method="POST" action='/login/?next={{next}}'>
+            {% else %}
+                <form method="POST" action='{% url 'login' %}'>
+            {%endif%}
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{field.html_name|capfirst}}</label>
+                    <input type="{{field.html_name}}" class="form-control" name="{{field.html_name}}">
+                    <small class="form-text text-muted">{{field.help_text}}</small>
+                </div>
+                {% endfor %}
+                <input type="submit" class="btn btn-primary mt-4" value = "Iniciar Sesión">
+            </form>
+            <p class="mt-4" >¿No tienes cuenta? <a href="{% url 'register' %}">Registrate</a></p>
+        </div>
+        <div class="col-sm-1 col-md-2"></div>
+    </div>
+{% endblock %}
