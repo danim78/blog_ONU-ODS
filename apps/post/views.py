@@ -41,9 +41,17 @@ def agregar_post(request):
 
 
 def inicio(request):
-    posts = Post.objects.all()
+    try:
+        pagina = int(request.GET.get("paginas", 0))
+    except:
+        pagina = 0
 
+    inicio = pagina * 2
+    final = inicio + 2
+    posts = Post.objects.all()[inicio:final]
     contexto = {"lista_posts":posts,
+                "paginas":pagina+1, 
+                "pagina_anterior": pagina-1,   
                 }
     template = "inicio.html"
     return render(request, template ,contexto)    

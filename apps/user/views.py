@@ -9,6 +9,8 @@ from apps.user.forms import EditarUsuarioForm, NuevoUsuarioForm
 def iniciar_sesion(request):
     if request.user.is_authenticated:
         return redirect("listar_posts")
+
+    siguiente = request.GET.get("next","/") 
         
     form = AuthenticationForm(data = request.POST or None)
     if request.method == "POST":
@@ -18,10 +20,14 @@ def iniciar_sesion(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request,user)
-                return redirect("/")
+                pagina_siguiente = request.POST.get("next","/")
+                return redirect(pagina_siguiente)
     return render(request, "user/login.html",{
         "form":form,
+        "siguiente":siguiente
     })
+
+    # login redirect next
 
 def cerrar_sesion(request):
     logout(request)

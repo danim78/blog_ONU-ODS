@@ -4,6 +4,7 @@
 
 {% block contenido %}
 <form action="" method="POST">
+    <input type="hidden" value="{{siguiente}}" name="next">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Iniciar sesión">
