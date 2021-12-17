@@ -24,3 +24,11 @@ class Post(models.Model):
     def __str__(self):
         return self.titulo
 
+class Comentario(models.Model):
+    mensaje = models.TextField()
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    username = models.ForeignKey(User, on_delete= models.CASCADE,default=1)
+    post = models.ForeignKey(Post, on_delete= models.CASCADE,default=1)
+
+    def __str__(self):
+        return self.mensaje

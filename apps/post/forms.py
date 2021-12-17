@@ -1,6 +1,6 @@
 from django import forms
 from django.db.models import fields
-from apps.post.models import Post, Categoria
+from apps.post.models import Comentario, Post, Categoria
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -22,3 +22,8 @@ class BusquedaPost(forms.Form):
     def __init__(self, *args, **kwargs):
         super(BusquedaPost, self).__init__(*args, **kwargs)
         self.fields["titulo"].widget.attrs["placeholder"] = "titulo"
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ("mensaje",)

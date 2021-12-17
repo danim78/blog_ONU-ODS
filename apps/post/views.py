@@ -1,8 +1,8 @@
 from django.shortcuts import HttpResponse ,render, redirect
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
-from apps.post.models import Post
-from apps.post.forms import PostForm, BusquedaPost
+from apps.post.models import Comentario, Post
+from apps.post.forms import PostForm, BusquedaPost, ComentarioForm
 
 # Create your views here.
 
@@ -93,13 +93,19 @@ def ver_post(request, id):
     except:
         return HttpResponse("<h2>No existe el post</h2>")
 
+    comentarios = post.comentario_set.all().order_by("-fecha_creacion")
+    form_comentario=ComentarioForm()
+
     contexto = {
-        "post": post
+        "post": post,
+        "comentarios": comentarios,
+        "form_comentario": form_comentario
     }
 
     template = "post/ver_post.html"
 
     return render(request, template, contexto)
+
 
 def editar_post(request, id):
     post = Post.objects.get(pk=id)
@@ -130,3 +136,40 @@ def borrar_post(request, id):
     contexto = {"post" : post}
 
     return render(request, template, contexto)
+
+# def comentar(request, id):
+#     comentario = Comentario.objects.get(pk=id)
+    
+
+#     if request.method == 'POST':
+#         form = ComentarioForm(request.POST)
+#         if form.is_valid():
+#             comentario = form.save(commit=False)
+#             post.autor = request.user
+#             post.save()
+#             return redirect('/')
+#     else:
+#         form = ComentarioForm()
+
+#     template = "post/comentario.html"
+#     contexto = {
+#         "form": form
+#     }
+#     return(render(request, template, contexto))
+
+@login_required(login_url='login')
+def comentar(request,id):
+    post=Post.objects.get(pk=id)
+    if post.permitir_comentarios:
+        if request.method == "POST":
+            form = ComentarioForm(request.POST)
+            if form.is_valid():
+                comentario = form.save(commit=False)
+                comentario.username = request.user
+                comentario.post = post
+                comentario.save()
+                return redirect("ver_post", post.id)
+            else:
+                return redirect("ver_post", post.id)
+    else:
+        return redirect("ver_post", post.id)
