@@ -1,4 +1,5 @@
-from django.shortcuts import HttpResponse ,render, redirect, Http404
+from django.shortcuts import HttpResponse ,render, redirect
+from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from apps.post.models import Post
 from apps.post.forms import PostForm, BusquedaPost
@@ -82,7 +83,7 @@ def ver_post(request, id):
     try:
         post = Post.objects.get(pk=id)
     except:
-        raise Http404("no existe el post")
+        return HttpResponse("<h2>No existe el post</h2>")
 
     contexto = {
         "post": post

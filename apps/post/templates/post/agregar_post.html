@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Crear Post</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block titulo %}
+Nuevo post
+{% endblock titulo %}
+
+{% block contenido %}
     {% if user.is_authenticated %}
-        <form method="POST" action="" enctype="multipart/form-data">
+    <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        {{form}}
+        {{formulario.as_p}}
         <input type='submit'>
     </form>
     {% else %}
-        <h1>Necesita <a href="/login">Iniciar sesión</a>para crear un post</h1>
+        <h2>Es necesario <a href="/login">iniciar sesión</a> para crear o editar un post.</h2>
     {% endif %}
-</body>
-</html>
+    {% endblock contenido %}
