@@ -5,7 +5,7 @@ from apps.post.models import Post, Categoria
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('titulo', 'contenido', 'permitir_comentarios')
+        fields = ('titulo', 'contenido', 'permitir_comentarios', 'imagen')
 
 class BusquedaPost(forms.Form):
     titulo = forms.CharField(max_length=30, required = False)

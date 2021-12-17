@@ -12,7 +12,7 @@ def agregar_post(request):
     template = 'post/agregar_post.html'
 
     
-    formulario = PostForm(request.POST or None)
+    formulario = PostForm(request.POST, request.FILES  or None)
     if request.method == "POST":
         if formulario.is_valid():
             post = formulario.save()

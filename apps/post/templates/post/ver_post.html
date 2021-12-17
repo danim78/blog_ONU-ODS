@@ -7,10 +7,11 @@ Nuevo post
 {% block contenido %}
 
     <h2>{{post.titulo}}</h2>
-    {#<p>{{post.imagen}}</p> esto esta comentado #}
+    <img src="{{post.imagen.url}}"/>
     <p>{{post.contenido}}</p>
     <p>Fecha de creacion: {{post.fecha_creado}}</p>
     <p>Ultima modificacion: {{post.fecha_modificado}}</p>
+    <p>Autor: {{post.autor}}</p>
     <p>Categoria: {{post.categoria}}</p>
 
     <a href="{%url 'editar_post' post.id %}"><p>Editar post</p></a>
