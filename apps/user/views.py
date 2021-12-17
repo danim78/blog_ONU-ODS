@@ -1,8 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, UserCreationForm, PasswordChangeForm
 # Create your views here.
 from django.contrib.auth.models import User
+from apps.post.models import Post
 from apps.user.forms import EditarUsuarioForm, NuevoUsuarioForm
 
 def iniciar_sesion(request):
@@ -42,6 +43,22 @@ def nuevo_usuario(request):
         "form":form
     })
 
+def perfil(request, id):
+    try:
+        user = User.objects.get(pk=id)
+    except:
+        return HttpResponse("<h2>No existe el post</h2>")
+
+    posts = Post.objects.filter(autor = id)
+    contexto = {
+        "perfil": user,
+        "lista_posts": posts
+    }
+
+    template = "user/perfil.html"
+
+    return render(request, template, contexto)
+
 
 def editar_usuario(request):
     if not request.user.is_authenticated:
@@ -51,7 +68,7 @@ def editar_usuario(request):
     if request.method == "POST":
         if form.is_valid():
             user = form.save()
-            return redirect("listar_posts")
+            return redirect("perfil", user.id)
     return render(request, "user/editar_usuario.html",{
         "form":form,
     })

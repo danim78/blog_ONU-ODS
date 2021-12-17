@@ -13,4 +13,6 @@ urlpatterns = [
     path("editar/", views.editar_usuario, name="editar_usuario"),
     # cambiar clave
     path("editar-clave/", views.editar_clave, name="editar_clave"),
+    # ver perfil
+    path("perfil/<int:id>", views.perfil, name="perfil"),
 ]

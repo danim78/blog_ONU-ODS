@@ -1,0 +1,48 @@
+{%extends 'index.html' %}
+
+{% block contenido %}
+
+<header class="masthead" style="background-image: url('assets/img/about-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h2>{{perfil.first_name}} {{perfil.last_name}}</h2>
+                    <span class="subheading">@{{perfil.username}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                {% for post in lista_posts %}
+                            <!-- Post preview-->
+                            <div class="post-preview">
+                                <a href="{%url 'ver_post' post.id%}">
+                                    <h2 class="post-title">{{post.titulo}}</h2>
+                                    <h3 class="post-subtitle">aca no se que iria</h3>
+                                </a>
+                                <p class="post-meta">
+                                    Posted by
+                                    <a href="{%url 'perfil' post.autor.id %}">{{post.autor}}</a>
+                                    {{post.fecha_creado}}
+                                </p>
+                            </div>
+                            <!-- Divider-->
+                            <hr class="my-4" />
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+
+{% if perfil == user %}
+    <a href="{%url 'editar_usuario' %}">Editar perfil</a><br>
+{%endif%}
+    <a href="{%url 'listar_posts' %}">Volver a lista de posts</a>
+
+{% endblock contenido %}

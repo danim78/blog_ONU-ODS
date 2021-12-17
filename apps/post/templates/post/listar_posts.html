@@ -19,7 +19,7 @@ Posts
                                 </a>
                                 <p class="post-meta">
                                     Posted by
-                                    <a href="#!">{{post.autor}}</a>
+                                    <a href="{%url 'perfil' post.autor.id %}">{{post.autor}}</a>
                                     {{post.fecha_creado}}
                                 </p>
                             </div>
