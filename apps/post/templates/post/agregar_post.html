@@ -8,7 +8,7 @@ Nuevo post
     {% if user.is_authenticated %}
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        {{formulario.as_p}}
+        {{form.as_p}}
         <input type='submit'>
     </form>
     {% else %}

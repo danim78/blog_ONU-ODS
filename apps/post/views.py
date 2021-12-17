@@ -95,18 +95,18 @@ def ver_post(request, id):
 
 def editar_post(request, id):
     post = Post.objects.get(pk=id)
-    formulario = PostForm(request.POST or None, instance=post)
+    form = PostForm(request.POST or None, instance=post)
 
     if request.method == "POST":
-        if formulario.is_valid():
-            post = formulario.save()
+        if form.is_valid():
+            post = form.save()
             return redirect("ver_post", post.id)
 
 
     template = "post/agregar_post.html"
 
     contexto = {
-        "formulario":formulario
+        "form":form
     }
     return render(request, template, contexto)
 

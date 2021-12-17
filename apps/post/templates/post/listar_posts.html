@@ -8,18 +8,21 @@ Posts
 
     <h2>POSTS</h2>
 
-    <a href="{%url 'agregar_post' %}"><h5>Nuevo post</h5></a>
-
-    <h3>Buscar Post:</h3>
-    <form action="" method="get">
-        {{ search_form }}
-        <input type="submit" value="buscar">
-    </form>
-
     {% for post in lista_posts %}
-
-    <a href="{%url 'ver_post' post.id%}"><h2>{{post.titulo}}</h2></a>
-
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a href="{%url 'ver_post' post.id%}">
+                            <h2 class="post-title">{{post.titulo}}</h2>
+                            <h3 class="post-subtitle">aca no se que iria</h3>
+                        </a>
+                        <p class="post-meta">
+                            Posted by
+                            <a href="#!">{{post.autor}}</a>
+                            {{post.fecha_creado}}
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
     {% endfor %}
 
 {% endblock contenido %}
