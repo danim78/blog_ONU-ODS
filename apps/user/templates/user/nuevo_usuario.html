@@ -1,17 +1,41 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Reegistro{%endblock%}
 
 {% block contenido %}
-    <form action="" method="POST">
-        <h1>Registrarse</h1>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <!-- {# form.username.errros#}
-        <label for="{#form.username.id_for_label#}">{# form.username.label #} </label>
-        {# form.username #}
-        <p>nasdonas</p>
-        <p> {#form.username.help_text #}</p> -->
-        <input type="submit" value="registrarse">
+    <h1>Registrarse</h1>
+    <form method="POST" action="{% url 'nuevo_usuario' %}">
+        {%  csrf_token %}
+        <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Usuario</label>
+                <input type="text" class="form-control" name="{{form.username.html_name}}">
+                <small class="form-text text-muted">{{form.username.help_text}}</small>
+             </div>
+             <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+                <input type="password" class="form-control" name="{{form.password1.html_name}}">
+                <small class="form-text text-muted">{{form.password1.help_text}}</small>
+             </div>
+             <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Confirmar Contraseña</label>
+                <input type="password" class="form-control" name="{{form.password2.html_name}}">
+                <small class="form-text text-muted">{{form.password2.help_text}}</small>
+             </div>
+             <div class="unstyled">
+                <small class="form-text text-danger">{{form.errors}}</small>
+             </div>
+
+        <input type="submit" class="btn btn-primary mt-4" value="Registrarse">
+
     </form>
+    <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia Sesión</a></p>
 {% endblock %}
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+
+
