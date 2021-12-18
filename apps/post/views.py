@@ -41,87 +41,8 @@ def agregar_post(request):
         return render(request, 'post/agregar_post.html', {'form':form})
 
 def inicio(request):
-<<<<<<< HEAD
-    try:
-        pagina = int(request.GET.get("paginas", 0))
-    except:
-        pagina = 0
-    
-    inicio = pagina * 5
-    final = inicio + 5
-    posts = Post.objects.all()[inicio:final]
-
-    total_posts = Post.objects.all().count()
-    pagina_actual = pagina + 1
-
-    if total_posts%5 == 0:
-        total_paginas = total_posts // 5
-    else:
-        total_paginas = (total_posts // 5) + 1
-
-    if pagina == 0:
-        contexto = {"lista_posts":posts,
-                    "paginas":pagina+1, 
-                    "pagina_anterior": pagina,
-                    "pagina_actual":pagina_actual,
-                    "total_paginas":total_paginas
-                    }
-        template = "inicio.html"
-        return render(request, template ,contexto)  
-            
-            #1          
-    
-    elif pagina >= total_paginas:                      
-        contexto = {"lista_posts":posts,
-                    "paginas":pagina, 
-                    "pagina_anterior": pagina-1,   
-                    "pagina_actual":pagina_actual,
-                    "total_paginas":total_paginas
-                    }
-        template = "inicio.html"
-        return render(request, template ,contexto)   
-
-#           2           2
-    elif pagina+1 == total_paginas:                      
-        contexto = {"lista_posts":posts,
-                    "paginas":pagina, 
-                    "pagina_anterior": pagina-1,   
-                    "pagina_actual":pagina_actual,
-                    "total_paginas":total_paginas
-                    }
-        template = "inicio.html"
-        return render(request, template ,contexto) 
-
-    else:
-        contexto = {"lista_posts":posts,
-                    "paginas":pagina+1, 
-                    "pagina_anterior": pagina-1,
-
-                    "pagina_actual":pagina_actual,
-                    "total_paginas":total_paginas
-                    }
-        template = "inicio.html"
-        return render(request, template ,contexto) 
-
-    # else:
-    #     if pagina < total_paginas:                      
-    #         contexto = {"lista_posts":posts,
-    #                     "paginas":pagina+1, 
-    #                     "pagina_anterior": pagina-1,   
-    #                     }
-    #         template = "inicio.html"
-    #         return render(request, template ,contexto) 
-
-    #     else:
-    #         contexto = {"lista_posts":posts,
-    #                     "paginas":pagina, 
-    #                     "pagina_anterior": pagina-1,   
-    #                     }
-    #         template = "inicio.html"
-    #         return render(request, template ,contexto)
-=======
     posts = Post.objects.all()
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, 3)
     num_pagina = request.GET.get('page')
     pagina_actual = paginator.get_page(num_pagina)
     return render(request, 'inicio.html', {'posts': pagina_actual})
@@ -144,7 +65,6 @@ def inicio(request):
      return render(request, template ,contexto) ''' 
 
 
->>>>>>> BranchPrueba2
 
 def listar_posts(request):
 
