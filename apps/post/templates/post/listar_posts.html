@@ -15,7 +15,9 @@ Posts
     <input type='submit'>
 </form>
 
-    <div class="row">
+        <div class="container px-4 px-lg-">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                
 
         {% for post in posts %}
             <div class="col-sm-6 col-md-4">
@@ -53,5 +55,6 @@ Posts
                             <a href="?page={{posts.previous_page_number}}" class="btn btn-outline-secondary">Anterior</a>
                         </div>
                     {% endif %}
+                
 
     {% endblock contenido %}

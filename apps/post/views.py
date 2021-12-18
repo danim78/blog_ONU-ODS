@@ -40,12 +40,15 @@ def agregar_post(request):
         form = PostForm()
         return render(request, 'post/agregar_post.html', {'form':form})
 
+
 def inicio(request):
-    posts = Post.objects.all()
-    paginator = Paginator(posts, 3)
-    num_pagina = request.GET.get('page')
-    pagina_actual = paginator.get_page(num_pagina)
-    return render(request, 'inicio.html', {'posts': pagina_actual})
+    posts = Post.objects.all().order_by("-fecha_creado")[0:2]
+    
+    template = 'inicio.html'
+    contexto = {
+        'posts': posts,
+    }
+    return render(request, template, contexto)
 
 
 '''def inicio(request):
