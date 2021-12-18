@@ -3,6 +3,7 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from apps.post.models import Comentario, Post
 from apps.post.forms import PostForm, BusquedaPost, ComentarioForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -39,22 +40,31 @@ def agregar_post(request):
         form = PostForm()
         return render(request, 'post/agregar_post.html', {'form':form})
 
-
 def inicio(request):
-    try:
-        pagina = int(request.GET.get("paginas", 0))
-    except:
-        pagina = 0
+    posts = Post.objects.all()
+    paginator = Paginator(posts, 2)
+    num_pagina = request.GET.get('page')
+    pagina_actual = paginator.get_page(num_pagina)
+    return render(request, 'inicio.html', {'posts': pagina_actual})
 
-    inicio = pagina * 2
-    final = inicio + 2
-    posts = Post.objects.all()[inicio:final]
-    contexto = {"lista_posts":posts,
-                "paginas":pagina+1, 
-                "pagina_anterior": pagina-1,   
-                }
-    template = "inicio.html"
-    return render(request, template ,contexto)    
+
+'''def inicio(request):
+     try:
+         pagina = int(request.GET.get("paginas", 0))
+     except:
+         pagina = 0
+ 
+     inicio = pagina * 2
+     final = inicio + 2
+     posts = Post.objects.all()[inicio:final]
+     contexto = {"lista_posts":posts,
+                 "paginas":pagina+1, 
+                 "pagina_anterior": pagina-1,   
+                 }
+     template = "inicio.html"
+     return render(request, template ,contexto) ''' 
+
+
 
 def listar_posts(request):
 

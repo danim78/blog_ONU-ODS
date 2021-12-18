@@ -13,10 +13,10 @@ class Categoria(models.Model):
 
 class Post(models.Model):
     titulo = models.CharField(max_length=30)
-    contenido = models.TextField()
+    contenido = models.CharField(max_length=300)
     imagen = models.ImageField(upload_to="post/", null = True)
-    autor = models.ForeignKey(User, on_delete = models.CASCADE,default=1)
-    fecha_creado = models.DateTimeField(auto_now_add=True)
+    autor = models.ForeignKey(User, on_delete = models.CASCADE, default=1)
+    fecha_creado = models.DateTimeField(auto_now_add=True, null=True)
     fecha_modificado = models.DateTimeField(auto_now=True)
     categoria = models.ForeignKey(Categoria, on_delete = models.SET_NULL, null=True)
     permitir_comentarios = models.BooleanField(default = True)

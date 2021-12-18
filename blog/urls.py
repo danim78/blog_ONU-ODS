@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
+from apps.post import views
 from django.conf.urls.static import static
 
 from blog.settings import MEDIA_ROOT
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('post/',views.listar_posts, name='post'),
     path('',include('apps.post.urls')),
     path('',include('apps.user.urls')),
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

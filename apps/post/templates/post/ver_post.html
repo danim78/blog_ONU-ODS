@@ -14,9 +14,9 @@ Post
                     <h1> {{post.titulo}} </h1>
                     <h2 class="subheading">{{post.categoria}}</h2>
                     <span class="meta">
-                        Posted by
-                        <a href="{%url 'perfil' post.autor.id %}">{{post.autor}}</a>
-                        {{post.fecha_creado}}
+                        <p>Posteado por <a style="property:value;" href="{%url 'perfil' post.autor.id %}">{{post.autor}}</a> {{post.fecha_creado}}
+                        </p>
+                        <p>
                     </span>
                 </div>
             </div>
