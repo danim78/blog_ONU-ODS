@@ -40,8 +40,9 @@ Home
                                 <!-- Divider-->
                                 <hr class="my-4" />
                 {% endfor %}
-                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{%url 'inicio' %}?paginas={{paginas}}">Mas →</a></div>
-                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{%url 'inicio' %}?paginas={{pagina_anterior}}">Anterior </a></div>
+                Página {{pagina_actual}} de {{total_paginas}} páginas
+                <div class="d-flex justify-content-end mb-4"> <a class="btn btn-primary text-uppercase" href="{%url 'inicio' %}?paginas={{pagina_anterior}}">← Anterior </a> <a class="btn btn-primary text-uppercase" href="{%url 'inicio' %}?paginas={{paginas}}"> Siguiente →</a></div>
+
             </div>
         </div>
     </div>
