@@ -77,7 +77,8 @@
 
 
 {% block content %}
-    <div class="row">
+{% if True %}
+<div class="row">
 
         {% for post in posts %}
             <div class="col-sm-6 col-md-4">
@@ -115,6 +116,7 @@
                             <a href="?page={{posts.previous_page_number}}" class="btn btn-outline-secondary">Anterior</a>
                         </div>
                     {% endif %}
+{% endif %}                    
 
         <!-- Footer-->
         <footer class="border-top">

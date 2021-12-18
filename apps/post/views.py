@@ -86,9 +86,13 @@ def listar_posts(request):
             posts= posts.order_by("-fecha_creado")
     else:
         posts = Post.objects.all()
+    
+    paginator = Paginator(posts, 2)
+    num_pagina = request.GET.get('page')
+    pagina_actual = paginator.get_page(num_pagina)
 
-    contexto = {"lista_posts":posts,
-                "search_form":search_form,
+    contexto = {"search_form":search_form,
+                'posts': pagina_actual,
                 }
 
     template = "post/listar_posts.html"
