@@ -87,7 +87,7 @@ def editar_clave(request):
     if request.method == "POST":
         if form.is_valid():
             user = form.save()
-            return redirect("listar_posts")
+            return redirect('login')
     return render(request, "user/editar_clave.html",{
         "form":form,
     })
