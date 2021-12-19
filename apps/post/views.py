@@ -75,12 +75,12 @@ def listar_posts(request):
     if search_form.is_valid():
         filtro_titulo = request.GET.get("titulo", "")
         orden_post = request.GET.get("orden", None)
-        #param_categorias = request.GET.getlist("categoria")
+        param_categorias = request.GET.get("categoria")
 
         posts = Post.objects.filter(titulo__icontains = filtro_titulo)
 
-        #if param_categorias:
-        #    posts = posts.filter(categoria__id__in = param_categorias)
+        if param_categorias:
+            posts = posts.filter(categoria__id__in = param_categorias)
         if orden_post == "titulo":
             posts= posts.order_by("titulo")
         elif orden_post == "antiguo":
