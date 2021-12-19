@@ -1,10 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 
 {% block titulo %}
 Nuevo post
 {% endblock titulo %}
 
 {% block contenido %}
+<br>
+<br>
+<br>
     {% if user.is_authenticated %}
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}

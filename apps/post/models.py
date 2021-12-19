@@ -13,7 +13,7 @@ class Categoria(models.Model):
 
 class Post(models.Model):
     titulo = models.CharField(max_length=30)
-    contenido = models.CharField(max_length=300)
+    contenido = models.TextField(max_length=300)
     imagen = models.ImageField(upload_to="post/", null = True)
     autor = models.ForeignKey(User, on_delete = models.CASCADE, default=1)
     fecha_creado = models.DateTimeField(auto_now_add=True, null=True)

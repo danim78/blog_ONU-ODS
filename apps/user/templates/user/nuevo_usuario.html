@@ -1,41 +1,52 @@
-{% extends 'base.html' %}
-
+{% extends 'index.html' %}
 
 {% block contenido %}
-    <h1>Registrarse</h1>
-    <form method="POST" action="{% url 'nuevo_usuario' %}">
-        {%  csrf_token %}
-        <div class="form-group">
-                <label for="{{ form.username.id_for_label }}">Usuario</label>
-                <input type="text" class="form-control" name="{{form.username.html_name}}">
-                <small class="form-text text-muted">{{form.username.help_text}}</small>
-             </div>
-             <div class="form-group">
-                <label for="{{ form.password1.id_for_label }}">Contraseña</label>
-                <input type="password" class="form-control" name="{{form.password1.html_name}}">
-                <small class="form-text text-muted">{{form.password1.help_text}}</small>
-             </div>
-             <div class="form-group">
-                <label for="{{ form.password2.id_for_label }}">Confirmar Contraseña</label>
-                <input type="password" class="form-control" name="{{form.password2.html_name}}">
-                <small class="form-text text-muted">{{form.password2.help_text}}</small>
-             </div>
-             <div class="unstyled">
-                <small class="form-text text-danger">{{form.errors}}</small>
-             </div>
+<br>
+<br>
+<br>
+   <div class="row mt-5">
+      <div class="col-sm-1 col-md-2"></div>
+         <div class="col-sm-10 col-md-8">
+            <h1>Registrarse</h1>
+            <form method="POST" action="{% url 'nuevo_usuario' %}">
+               {%  csrf_token %}
+               
+               <div class="form-group">
+                        <label for="{{ form.username.id_for_label }}">Usuario</label>
+                        <input type="text" class="form-control" name="{{form.username.html_name}}">
+                     <br>
+                     </div>
+                     <div class="form-group">
+                        <label for="{{ form.password1.id_for_label }}">Nombre</label>
+                        <input type="text" class="form-control" name="{{form.first_name.html_name}}">
+                        <small class="form-text text-muted">{{form.first_name.help_text}}</small>
+                     </div>
+                     <br>
+                     <div class="form-group">
+                        <label for="{{ form.password1.id_for_label }}">Apellido</label>
+                        <input type="text" class="form-control" name="{{form.last_name.html_name}}">
+                        <small class="form-text text-muted">{{form.last_name.help_text}}</small>
+                     </div>
+                     <br>
+                     <div class="form-group">
+                        <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+                        <input type="password" class="form-control" name="{{form.password1.html_name}}">
+                        <small class="form-text text-muted">{{form.password1.help_text}}</small>
+                     </div>
+                     <div class="form-group">
+                        <label for="{{ form.password2.id_for_label }}">Confirmar Contraseña</label>
+                        <input type="password" class="form-control" name="{{form.password2.html_name}}">
+                        <small class="form-text text-muted">{{form.password2.help_text}}</small>
+                     </div>
+                     <div class="unstyled">
+                        <small class="form-text text-danger">{{form.errors}}</small>
+                     </div>
+                     <br>
+               <input type="submit" class="btn btn-primary mt-4" value="Registrarse">
 
-        <input type="submit" class="btn btn-primary mt-4" value="Registrarse">
-
-    </form>
-    <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia Sesión</a></p>
+            </form>
+            <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia Sesión</a></p>
+         </div>
+   </div>
 {% endblock %}
-
-
-
-
-
------------------------------------------------------------------------------------------------------------------
-
-
-
 

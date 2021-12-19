@@ -8,7 +8,7 @@ from apps.user.forms import EditarUsuarioForm, NuevoUsuarioForm
 
 def iniciar_sesion(request):
     if request.user.is_authenticated:
-        return redirect("listar_posts")
+        return redirect("inicio")
 
     siguiente = request.GET.get("next","/") 
         
@@ -44,7 +44,7 @@ def nuevo_usuario(request):
             #user.set_password("clave1234")
             if user is not None:
                 login(request,user)
-                return redirect("listar_posts")
+                return redirect("inicio")
     return render(request, "user/nuevo_usuario.html", {
         "form":form
     })
