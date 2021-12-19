@@ -28,52 +28,53 @@
                     Menu 
                     <i class="fas fa-bars"></i>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-
-
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        {% if request.user.is_authenticated %}
-                        {% load static %}
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'agregar_post' %}">Nuevo Post</a></li>
-                        {% endif %}
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'listar_posts' %}">Ir a Posts</a></li>
                         {% if not request.user.is_authenticated %}
+
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'nuevo_usuario' %}">Registrarse</a></li>
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login' %}">Ingresar</a></li>
-                        {% else %}                                
+
+                        {% else %}   
                             
-                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">{{user|capfirst}}</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'agregar_post' %}">Nuevo Post</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'perfil' user.id %}">{{user|capfirst}}</a></li>
 
-
-                            <body>
-                                <div class="action">
+                                <li class="action">
                                     <div class="profile" onclick="menuToggle();">
                                         <img src="{% static '/dist/assets/img/img.jpg'%}">
                                     </div>
+
                                     <div class="menu">
                                         <h3>{{user|capfirst}}<br><span>Descripción de usuario</span></h3>
                                         <ul>
                                             <li><img src="{% static '/dist/assets/img/user.png'%}"><a href="{% url 'perfil' user.id %}">Mi perfil</a></li>
-                                            <li><img src="{% static '/dist/assets/img/settings.png'%}"><a href="{% url 'editar_usuario' %}">Ajustes</a></li>
+                                            <li><img src="{% static '/dist/assets/img/settings.png'%}"><a href="{% url 'editar_usuario' %}">Editar</a></li>
                                             <li><img src="{% static '/dist/assets/img/log-out.png'%}"><a href="{% url 'logout' %}">Salir</a></li>
                                         </ul>
                                     </div>
-                                </div>
-                            </body>
+                                </li>
+
                                 <script>
                                     function menuToggle(){
                                         const toggleMenu = document.querySelector('.menu');
                                         toggleMenu.classList.toggle('active')
                                     }
                                 </script>
+
+                            
                         {% endif %}
+                        
                     </ul>
-
-
                 </div>
             </div>
         </nav>
-            {%block contenido%}
-            {%endblock contenido%}
+
+
+        {%block contenido%}
+        {%endblock contenido%}
 
       
         <!-- Footer-->

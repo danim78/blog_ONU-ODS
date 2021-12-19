@@ -70,6 +70,34 @@
   box-sizing: border-box;
 }
 
+/* ACA MODIFICAMOS LOS COLORES DEL NAVAR */
+*  #mainNav {
+    background: rgba(29, 29, 29, 0.514) !important;
+    
+  }
+  /* COLOR LETRAS INICIO */
+  #mainNav .navbar-brand {
+    color: #fff !important;
+  }
+  /* POSICION EN INICIO */
+  #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+    color: rgb(0, 0, 0) !important;
+  }
+  /* COLOR LETRAS DER */
+  #mainNav .navbar-nav > li.nav-item > a.nav-link {
+    color: #fff !important;
+  }
+   /* POSICION EN DER */
+  #mainNav .navbar-nav > li.nav-item > a.nav-link:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link:hover {
+    color: rgb(0, 0, 0) !important;
+  }
+  /* COLOR LETRAS MENU */
+  #mainNav .navbar-toggler {
+    background-color: transparent !important;
+    color: #fff !important;
+  }
+
+
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;

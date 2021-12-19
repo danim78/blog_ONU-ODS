@@ -14,8 +14,8 @@ Post
                     <h1> {{post.titulo}} </h1>
                     <h2 class="subheading">{{post.categoria}}</h2>
                     <span class="meta">
-                        <p>Posteado por <a style="property:value;" href="{%url 'perfil' post.autor.id %}">{{post.autor}}</a> {{post.fecha_creado}}
-                        </p>
+                        <h7>Posteado por <a style="property:value;" href="{%url 'perfil' post.autor.id %}">{{post.autor}}</a> {{post.fecha_creado}}
+                        </h7>
                         <p>
                     </span>
                 </div>
@@ -29,39 +29,63 @@ Post
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                     <p>{{post.contenido}}</p>
-                </p>
-            </div>
-        </div>
-    </div>
-</article>
+
 
     {% if post.autor == user %}
         <a href="{%url 'editar_post' post.id %}">Editar post</a><br>
         <a href="{%url 'borrar_post' post.id %}">Borrar post</a><br>
     {%endif%}
-    {% if user.is_authenticated %}
-    <form method="POST" action="{% url 'comentar' post.id %}">
-        {% csrf_token %}
-        <div class="row">
-          <div class="input-field col s12">
-            {{ form_comentario }}
-            <label for="id_text">Comentario:</label>
-          </div>
-        </div>
-        <div class="row center-align">
-          <input type="submit" class="btn btn-primary mt-4" value="Comentar">
-      </div>
-      </form>
+    {% if post.permitir_comentarios %}
+        {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'comentar' post.id %}">
+                {% csrf_token %}
+                <div class="row">
+                <div class="input-field col s12">
+                    <br>
+                    <h7>Realiza un Comentario:</h7>
+                    <br>
+                    <div class="mb-3">
+                        {{ form_comentario.mensaje }}
+                    </div>
+
+
+                </div>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input type="submit" class="btn btn-outline-primary" value="Comentar">
+                </div>
+            </form>
+        {% else %}
+
+        
+            <div class="post-preview">
+                <div class="post-meta">
+                    <h7>Es necesario</h7>
+                    <b><a href="/login">iniciar sesión</a></b>
+                    <h7>para realizar comentarios.</h7>
+                </div>
+            </div>
+
+        {% endif %}
+        
+        <br>
+        {% if cantidad_comentarios > 0 %}
+            <h6>COMENTARIOS:</h6>
+            {% for comentario in comentarios %}
+              <div class="card">
+                <div class="card-body">
+                  <a href="{%url 'perfil' comentario.username.id %}"><h5 class="card-title">{{comentario.username}}</h5></a>
+                  <p class="card-text">{{comentario.mensaje}}</p>
+                  <p class="card-text"><small class="text-muted">{{comentario.fecha_creacion}}</small></p>
+                </div>
+              </div>
+            {% endfor %}
+        {% else %}
+            <h7>Nadie ha comentado.</h7>
+        {% endif %}
     {% else %}
-        <h2>Es necesario <a href="/login">iniciar sesión</a> para realizar comentarios.</h2>
+        <h7>No se permiten comentarios para este post.</h7><br>
     {% endif %}
 
-    {% for comentario in comentarios %}
-    <p>{{comentario.username}}</p>
-    <p>{{comentario.mensaje}}</p>
-    <p>{{comentario.fecha_creacion}}</p>
-    {% endfor %}
-
-    <a href="{%url 'listar_posts' %}">Volver a lista de posts</a>
 
 {% endblock contenido %}

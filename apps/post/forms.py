@@ -22,9 +22,13 @@ class BusquedaPost(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(BusquedaPost, self).__init__(*args, **kwargs)
-        self.fields["titulo"].widget.attrs["placeholder"] = "titulo"
+        self.fields["titulo"].widget.attrs["placeholder"] = " Titulo"
 
 class ComentarioForm(forms.ModelForm):
     class Meta:
         model = Comentario
         fields = ("mensaje",)
+    
+    # def __init__(self, *args, **kwargs):
+    #     super(ComentarioForm, self).init(*args, **kwargs)
+    #     self.fields["mensaje"].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Escriba su comentario', 'type' : 'text'})

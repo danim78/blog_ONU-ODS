@@ -120,11 +120,13 @@ def ver_post(request, id):
 
     comentarios = post.comentario_set.all().order_by("-fecha_creacion")
     form_comentario=ComentarioForm()
+    cantidad_comentarios= post.comentario_set.all().count()
 
     contexto = {
         "post": post,
         "comentarios": comentarios,
-        "form_comentario": form_comentario
+        "form_comentario": form_comentario,
+        "cantidad_comentarios":cantidad_comentarios,
     }
 
     template = "post/ver_post.html"

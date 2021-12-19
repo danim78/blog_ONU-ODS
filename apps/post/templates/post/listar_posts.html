@@ -10,53 +10,68 @@ Posts
 <br>
 <br>
 
-<h3>Buscar Posts</h3>
-<form method = "GET" action=""> 
-    {{search_form}}
-    <input type='submit'>
-</form>
-<br>
+
 
         <div class="container px-4 px-lg-">
             <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="text-center">
+                        <h1>Buscar Posts</h1>
+                        <hr class="my-3" />
+                        <form method = "GET" action=""> 
+                            {{search_form}}
+                            <input type='submit'>
+                        </form>
+                <hr class="my-5" />
+                </div>
                 
 
-        {% for post in posts %}
-            <div class="col-sm-6 col-md-4">
-                <div class="card">
-                        {% if post.imagen.url == 'media/imagen' %}
-                        {% load static %}
-                            <img src="{% static 'imagen.jpg' %}" class="card-img-top" height="200px" alt="{{post.titulo}}">
-                        {% else %}
-                            <img src="{{post.imagen.url}}" class="card-img-top" height="200px" alt="{{post.titulo}}">
-                        {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ post.titulo }}</h5>
-                        <a href="{%url 'perfil' post.autor.id %}">{{ post.autor }}</a>
-                        <div class="mb-2">
+                {% for post in posts %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="card">
                             
-                            <p class="post-meta">
-                                    {{post.fecha_creado|date:"d-m-y h:i a"}}
+                                {% if post.imagen.url == 'media/imagen' %}
+                                    {% load static %}
+                                    <a href="{%url 'ver_post' post.id%}"><img src="{% static 'imagen.jpg' %}" class="card-img-top" height="200px" alt="{{post.titulo}}"></a>
+                                {% else %}
+                                    <a href="{%url 'ver_post' post.id%}"><img src="{{post.imagen.url}}" class="card-img-top" height="200px" alt="{{post.titulo}}"></a>
+                                {% endif %}
+
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h2 class="card-title">{{ post.titulo }}</h2>
+                            </div>
+                                <h7><b>Autor: </b><a href="{%url 'perfil' post.autor.id %}">{{ post.autor }}</a></h7><br>
+                                
+                                <h7><b>Categoria: </b><a href="/posts/?titulo=&orden=nuevo&categoria={{post.categoria.id}}">{{post.categoria}}</a></h7><br>
+                                
+                                <p>                 
+                                    <b>Publicado: </b> {{post.fecha_creado}}
                                 </p>
+                            <div class="text-center">
+                                <a href="{%url 'ver_post' post.id%}" class="btn btn-outline-primary">Ver Post</a>
+                            </div>
+                                
                             
                         </div>
-                        <a href="{%url 'ver_post' post.id%}" class="btn btn-outline-primary">Ver más</a>
                     </div>
                 </div>
+                {% endfor %}
+            </div>
+            <div class="mt-3">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                {% if posts.has_previous %}
+                    
+                        <a href="?page={{posts.previous_page_number}}" class="btn btn-outline-primary">Anterior</a>
+                    
+                {% endif %}
+                {% if posts.has_next %}
+                        <a href="?page={{posts.next_page_number}}" class="btn btn-outline-primary">Siguiente</a>
+                    
+                {% endif %}
                 </div>
-            {% endfor %}
-                </div>
-                <div class="mt-3">
-                    {% if posts.has_next %}
-                        <div>
-                            <a href="?page={{posts.next_page_number}}" class="btn btn-outline-secondary">Siguiente</a>
-                        </div>
-                    {% endif %}
-                    {% if posts.has_previous %}
-                        <div>
-                            <a href="?page={{posts.previous_page_number}}" class="btn btn-outline-secondary">Anterior</a>
-                        </div>
-                    {% endif %}
+            </div>       
+        </div>
+
                 
 
     {% endblock contenido %}
