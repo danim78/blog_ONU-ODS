@@ -24,7 +24,7 @@ from blog.settings import MEDIA_ROOT
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('post/',views.listar_posts, name='post'),
+    #path('post/',views.listar_posts, name='post'),
     path('',include('apps.post.urls')),
     path('',include('apps.user.urls')),
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

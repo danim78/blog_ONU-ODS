@@ -13,10 +13,10 @@
             <form method="POST" action="">
                {%  csrf_token %}
                
-               <div class="form-group">
+                     <div class="form-group">
                         <label for="{{ form.username.id_for_label }}">Usuario</label>
                         <input type="text" class="form-control" name= "{{form.username.html_name}}" placeholder="{{form.username}}">
-                     <br>
+                        <br>
                      </div>
                      <div class="form-group">
                         <label for="{{ form.password1.id_for_label }}">Nombre</label>
@@ -34,6 +34,7 @@
                      </div>
                      <br>
                <input type="submit" class="btn btn-primary mt-4" value="Guardar">
+            </form>
         </div>
     </div>
 {% endblock %}

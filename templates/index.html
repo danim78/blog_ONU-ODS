@@ -44,27 +44,27 @@
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">{{user|capfirst}}</a></li>
 
 
-                    <body>
-                        <div class="action">
-                            <div class="profile" onclick="menuToggle();">
-                                <img src="{% static '/dist/assets/img/img.jpg'%}">
-                            </div>
-                            <div class="menu">
-                                <h3>{{user|capfirst}}<br><span>Descripción de usuario</span></h3>
-                                <ul>
-                                    <li><img src="{% static '/dist/assets/img/user.png'%}"><a href="#">Mi perfil</a></li>
-                                    <li><img src="{% static '/dist/assets/img/settings.png'%}"><a href="#">Ajustes</a></li>
-                                    <li><img src="{% static '/dist/assets/img/log-out.png'%}"><a href="{% url 'logout' %}">Salir</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </body>
-                        <script>
-                            function menuToggle(){
-                                const toggleMenu = document.querySelector('.menu');
-                                toggleMenu.classList.toggle('active')
-                            }
-                        </script>
+                            <body>
+                                <div class="action">
+                                    <div class="profile" onclick="menuToggle();">
+                                        <img src="{% static '/dist/assets/img/img.jpg'%}">
+                                    </div>
+                                    <div class="menu">
+                                        <h3>{{user|capfirst}}<br><span>Descripción de usuario</span></h3>
+                                        <ul>
+                                            <li><img src="{% static '/dist/assets/img/user.png'%}"><a href="{% url 'perfil' user.id %}">Mi perfil</a></li>
+                                            <li><img src="{% static '/dist/assets/img/settings.png'%}"><a href="{% url 'editar_usuario' %}">Ajustes</a></li>
+                                            <li><img src="{% static '/dist/assets/img/log-out.png'%}"><a href="{% url 'logout' %}">Salir</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </body>
+                                <script>
+                                    function menuToggle(){
+                                        const toggleMenu = document.querySelector('.menu');
+                                        toggleMenu.classList.toggle('active')
+                                    }
+                                </script>
                         {% endif %}
                     </ul>
 
