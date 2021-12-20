@@ -1,6 +1,8 @@
 {% extends 'index.html' %}
 
 {% block contenido %}
+{% load static %}
+    <link href="{% static 'dist/css/log-reg.css' %}" rel="stylesheet">
 <br>
 <br>
 <br>
@@ -11,19 +13,20 @@
             <form method="POST" action="{% url 'nuevo_usuario' %}">
                {%  csrf_token %}
                
+               
                <div class="form-group">
                         <label for="{{ form.username.id_for_label }}">Usuario</label>
                         <input type="text" class="form-control" name="{{form.username.html_name}}">
                      <br>
                      </div>
                      <div class="form-group">
-                        <label for="{{ form.password1.id_for_label }}">Nombre</label>
+                        <label for="{{ form.first_name.id_for_label }}">Nombre</label>
                         <input type="text" class="form-control" name="{{form.first_name.html_name}}">
                         <small class="form-text text-muted">{{form.first_name.help_text}}</small>
                      </div>
                      <br>
                      <div class="form-group">
-                        <label for="{{ form.password1.id_for_label }}">Apellido</label>
+                        <label for="{{ form.last_name.id_for_label }}">Apellido</label>
                         <input type="text" class="form-control" name="{{form.last_name.html_name}}">
                         <small class="form-text text-muted">{{form.last_name.help_text}}</small>
                      </div>
@@ -31,17 +34,18 @@
                      <div class="form-group">
                         <label for="{{ form.password1.id_for_label }}">Contraseña</label>
                         <input type="password" class="form-control" name="{{form.password1.html_name}}">
-                        <small class="form-text text-muted">{{form.password1.help_text}}</small>
+                        <small class="unstyled">{{form.password1.help_text}}</small>
                      </div>
                      <div class="form-group">
                         <label for="{{ form.password2.id_for_label }}">Confirmar Contraseña</label>
                         <input type="password" class="form-control" name="{{form.password2.html_name}}">
                         <small class="form-text text-muted">{{form.password2.help_text}}</small>
                      </div>
-                     <div class="unstyled">
+                     <div class="error">
                         <small class="form-text text-danger">{{form.errors}}</small>
                      </div>
                      <br>
+
                <input type="submit" class="btn btn-primary mt-4" value="Registrarse">
 
             </form>

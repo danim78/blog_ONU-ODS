@@ -1,0 +1,22 @@
+.unstyled{
+
+}
+.unstyled ul{
+	list-style-type: none;
+	padding: 0;
+}
+.error{
+	font-weight: bold;
+}
+.error ul {
+	font-weight: bold;
+	text-transform: capitalize;
+	list-style-type: none;
+	padding: 0;
+}
+.error ul ul{
+	font-weight: 400;
+	text-transform: none;
+	list-style-type: none;
+	padding: 0;
+}
