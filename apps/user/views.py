@@ -13,6 +13,7 @@ def iniciar_sesion(request):
     siguiente = request.GET.get("next","/") 
         
     form = AuthenticationForm(data = request.POST or None)
+    
     if request.method == "POST":
         if form.is_valid():
             username = form.cleaned_data["username"]

@@ -13,10 +13,12 @@ class BusquedaPost(forms.Form):
     
     ORDER_OPCIONES = (
         ("titulo", "Titulo"),
+        ("comentarios", "Comentarios"),
         ("Fecha",(
             ("antiguo", "Antiguo"),
             ("nuevo", "Nuevo"))
         ))
+        
     orden = forms.ChoiceField(choices=ORDER_OPCIONES, required = False, initial="nuevo")
     categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(), widget=forms.Select, required = False)
 

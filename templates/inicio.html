@@ -5,91 +5,71 @@ BLOG ONU-ODS
 
 
 {% block contenido %}
-
-    <!-- Page Header-->
-    <header class="masthead" style="background-image: url('static/dist/assets/img/home1.jpg')">
-        <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">   
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="site-heading">
-                        <div class="text-align-right">
-                            <h1>ONU-ODS</h1>
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('static/dist/assets/img/home1.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">   
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <div class="text-align-right">
+                        <h1>ONU-ODS</h1>
+                    </div>
+                    <span class="subheading">Un blog hecho con amor al planeta :)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<br>
+<div class="container px-4 px-lg-">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="text-center">
+            <hr class="my-5" />
+            <article class="mb-2">
+                <div class="container px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <h3 class="display-6 mt-3" >OBJETIVOS DE DESARROLLO SOSTENIBLE</h3>
+                            <p>El 25 de septiembre de 2015, los líderes mundiales adoptaron un conjunto de objetivos globales para erradicar la pobreza, proteger el planeta y asegurar la prosperidad para todos como parte de una nueva agenda de desarrollo sostenible.</p>
+                            <p>Cada objetivo tiene metas específicas que deben alcanzarse en los próximos 15 años. Para alcanzar estas metas, todo el mundo tiene que hacer su parte: los gobiernos, el sector privado, la sociedad civil y personas como usted. </p>
+                            <p>¿Quieres participar? Puedes empezar a debatir junto a todos acerca de estos objetivos en este blog.</p>
+                            <ul> Comienza haciendo un <n><a href="{% url 'agregar_post' %}"> NUEVO POST </a></n></ul>
                         </div>
-                        <span class="subheading">Un blog hecho con amor al planeta :)</span>
+                    </div>
+                </div>
+            </article>
+            <hr class="my-5" />
+            <h3 class="display-6 mt-3" >POSTS RECIENTES</h3>
+            <hr class="my-5" />
+        </div>
+        {% for post in posts %}
+        <div class="col-sm-6 col-md-4">
+            <div class="card">
+                        {% if post.imagen.url == 'media/imagen' %}
+                            {% load static %}
+                            <a href="{%url 'ver_post' post.id%}"><img src="{% static 'imagen.jpg' %}" class="card-img-top" height="200px" alt="{{post.titulo}}"></a>
+                        {% else %}
+                            <a href="{%url 'ver_post' post.id%}"><img src="{{post.imagen.url}}" class="card-img-top" height="200px" alt="{{post.titulo}}"></a>
+                        {% endif %}
+                <div class="card-body">
+                    <div class="text-center">
+                        <h3 class="display-6 mt-3" >{{ post.titulo | truncatechars:25  }}</h3>
+                    </div>
+                        <h7><b>Autor: </b><a href="{%url 'perfil' post.autor.id %}">{{ post.autor }}</a></h7><br>
+                        <h7><b>Categoria: </b><a href="/posts/?titulo=&orden=nuevo&categoria={{post.categoria.id}}">{{post.categoria}}</a></h7><br>
+                        <p><b>Publicado: </b> {{post.fecha_creado}}</p>
+                    <div class="text-center">
+                        <a href="{%url 'ver_post' post.id%}" class="btn btn-outline-primary">Ver Post</a>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
-    <br>
-
-
-    <div class="container px-4 px-lg-">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="text-center">
-                <hr class="my-5" />
-                <article class="mb-2">
-                    <div class="container px-4 px-lg-5">
-                        <div class="row gx-4 gx-lg-5 justify-content-center">
-                            <div class="col-md-10 col-lg-8 col-xl-7">
-                                
-                                <h2 class="section-heading">OBJETIVOS DE DESARROLLO SOSTENIBLE</h2>
-                                <p>El 25 de septiembre de 2015, los líderes mundiales adoptaron un conjunto de objetivos globales para erradicar la pobreza, proteger el planeta y asegurar la prosperidad para todos como parte de una nueva agenda de desarrollo sostenible.</p>
-                                <p>Cada objetivo tiene metas específicas que deben alcanzarse en los próximos 15 años. Para alcanzar estas metas, todo el mundo tiene que hacer su parte: los gobiernos, el sector privado, la sociedad civil y personas como usted. </p>
-                                <p>¿Quieres participar? Puedes empezar a debatir junto a todos acerca de estos objetivos en este blog.</p>
-                                <p> Comienza haciendo un  
-                                    <b><a href="{% url 'agregar_post' %}">Nuevo Post</a></b>
-                                </p>
-
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <hr class="my-5" />
-                <h1>Posts Recientes</h1>
-                <hr class="my-5" />
-                </div>
-                {% for post in posts %}
-                <div class="col-sm-6 col-md-4">
-                    <div class="card">
-                            
-                                {% if post.imagen.url == 'media/imagen' %}
-                                    {% load static %}
-                                    <a href="{%url 'ver_post' post.id%}"><img src="{% static 'imagen.jpg' %}" class="card-img-top" height="200px" alt="{{post.titulo}}"></a>
-                                {% else %}
-                                    <a href="{%url 'ver_post' post.id%}"><img src="{{post.imagen.url}}" class="card-img-top" height="200px" alt="{{post.titulo}}"></a>
-                                {% endif %}
-
-                        <div class="card-body">
-                            <div class="text-center">
-                                <h2 class="card-title">{{ post.titulo }}</h2>
-                            </div>
-                                <h7><b>Autor: </b><a href="{%url 'perfil' post.autor.id %}">{{ post.autor }}</a></h7><br>
-                                
-                                <h7><b>Categoria: </b><a href="/posts/?titulo=&orden=nuevo&categoria={{post.categoria.id}}">{{post.categoria}}</a></h7><br>
-                                
-                                <p>                 
-                                    <b>Publicado: </b> {{post.fecha_creado}}
-                                </p>
-                            <div class="text-center">
-                                <a href="{%url 'ver_post' post.id%}" class="btn btn-outline-primary">Ver Post</a>
-                            </div>
-                                
-                            
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-                <div class="my-5">
-                <div class="d-grid gap-2 d-md-flex justify-content-md-center" >
-                            <div>
-                                <a href="{%url 'listar_posts' %}" class="btn btn-outline-primary">Ver todos</a>
-                            </div>     
-                    </div>
-                </div>
-                
+        {% endfor %}
+        <div class="my-5">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center" >
+                <div>
+                    <a href="{%url 'listar_posts' %}" class="btn btn-outline-primary">Ver todos</a>
+                </div>     
             </div>
-
-
+        </div>
 {% endblock contenido %}

@@ -70,7 +70,6 @@ def inicio(request):
 
 
 def listar_posts(request):
-
     search_form = BusquedaPost(request.GET or None)
     if search_form.is_valid():
         filtro_titulo = request.GET.get("titulo", "")
@@ -83,6 +82,8 @@ def listar_posts(request):
             posts = posts.filter(categoria__id__in = param_categorias)
         if orden_post == "titulo":
             posts= posts.order_by("titulo")
+        elif orden_post == "comentarios":
+            posts= posts.order_by("-comentario")
         elif orden_post == "antiguo":
             posts= posts.order_by("fecha_creado")
         elif orden_post == "nuevo":
@@ -120,13 +121,12 @@ def ver_post(request, id):
 
     comentarios = post.comentario_set.all().order_by("-fecha_creacion")
     form_comentario=ComentarioForm()
-    cantidad_comentarios= post.comentario_set.all().count()
-
+    # cantidad_comentarios= post.comentario_set.all().count()    
     contexto = {
         "post": post,
         "comentarios": comentarios,
         "form_comentario": form_comentario,
-        "cantidad_comentarios":cantidad_comentarios,
+        "cantidad_comentarios":post.cant_comentarios(),
     }
 
     template = "post/ver_post.html"

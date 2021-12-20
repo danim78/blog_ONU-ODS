@@ -9,111 +9,88 @@ Posts
 <br>
 <br>
 <br>
-
-
-
-        <div class="container px-4 px-lg-">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="text-center">
-                    <h3 class="display-6 mt-3" >BUSCAR POSTS</h3>
-
-                        <form method = "GET" action=""> 
-                            <div class="container mt-5">
-                                <ul>
-                                    <ul class="nav justify-content-center">
-
-                                            <li class="nav-item" aria-label=".form-control-lg example">
-                                                <div class="h-100 d-inline-block">
-                                                    {{search_form.titulo}}
-                                                </div>
-                                            </li>
-
-                                        
-                                        <li class="nav-item">
-                                            <div class="btn-group">
-                                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Orden
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    {{search_form.orden}}
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <div class="btn-group">
-                                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Categoria
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    {{search_form.categoria}}
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <input class="btn btn-outline-primary dropdown-toggle" type='submit' value="Buscar">
-                                        </li>
-                                    </ul>
-                                    <div class="col-sm-6 col-md-4">
-                                    </div>
+<div class="container px-4 px-lg-">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="text-center">
+            <h3 class="display-6 my-3" >BUSCAR POSTS</h3>
+            <form method = "GET" action=""> 
+                <div class="container mt-5">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item" aria-label=".form-control-lg example">
+                            <div class="h-100 d-inline-block">
+                                {{search_form.titulo}}
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="btn-group">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Orden
+                                </button>
+                                <ul class="dropdown-menu">
+                                    {{search_form.orden}}
                                 </ul>
-                            </div>  
-                        </form>
-                    <hr class="my-5" />
-                </div>
-                
-
-                {% for post in posts %}
-                <div class="col-sm-6 col-md-4">
-                    <div class="card">
-                            
-                                {% if post.imagen.url == 'media/imagen' %}
-                                    {% load static %}
-                                    <a href="{%url 'ver_post' post.id%}"><img src="{% static 'imagen.jpg' %}" class="card-img-top" height="200px" alt="{{post.titulo}}"></a>
-                                {% else %}
-                                    <a href="{%url 'ver_post' post.id%}"><img src="{{post.imagen.url}}" class="card-img-top" height="200px" alt="{{post.titulo}}"></a>
-                                {% endif %}
-
-                        <div class="card-body">
-                            <div class="text-center">
-                                <h2 class="card-title">{{ post.titulo }}</h2>
                             </div>
-                                <h7><b>Autor: </b><a href="{%url 'perfil' post.autor.id %}">{{ post.autor }}</a></h7><br>
-                                
-                                <h7><b>Categoria: </b><a href="/posts/?titulo=&orden=nuevo&categoria={{post.categoria.id}}">{{post.categoria}}</a></h7><br>
-                                
-                                <p>                 
-                                    <b>Publicado: </b> {{post.fecha_creado}}
-                                </p>
-                            <div class="text-center">
-                                <a href="{%url 'ver_post' post.id%}" class="btn btn-outline-primary">Ver Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="btn-group">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Categoria
+                                </button>
+                                <ul class="dropdown-menu">
+                                    {{search_form.categoria}}
+                                </ul>
                             </div>
-                        </div>
+                        </li>
+                        <li class="nav-item">
+                            <input class="btn btn-outline-primary dropdown-toggle" type='submit' value="Buscar">
+                        </li>
+                    </ul>
+                </div>  
+            </form>
+            <hr class="my-5" />
+        </div>
+        {% for post in posts %}
+        <div class="col-sm-6 col-md-4">
+            <div class="card">
+                {% if post.imagen.url == 'media/imagen' %}
+                    {% load static %}
+                    <a href="{%url 'ver_post' post.id%}"><img src="{% static 'imagen.jpg' %}" class="card-img-top" height="200px" alt="{{post.titulo}}"></a>
+                {% else %}
+                    <a href="{%url 'ver_post' post.id%}"><img src="{{post.imagen.url}}" class="card-img-top" height="200px" alt="{{post.titulo}}"></a>
+                {% endif %}
+                <div class="card-body">
+                    <div class="text-center">
+                        <h3 class="display-6 my-3">{{ post.titulo | truncatechars:25 }}</h3>
+                    </div>
+                    <h7><b>Autor: </b><a href="{%url 'perfil' post.autor.id %}">{{ post.autor }}</a></h7><br>
+                    <h7><b>Categoria: </b><a href="/posts/?titulo=&orden=nuevo&categoria={{post.categoria.id}}">{{post.categoria}}</a></h7><br>
+                    <p><b>Publicado: </b> {{post.fecha_creado}}</p>
+                    <div class="text-center">
+                        <a href="{%url 'ver_post' post.id%}" class="btn btn-outline-primary">Ver Post</a>
                     </div>
                 </div>
-                {% endfor %}
             </div>
-            <div class="mt-3">
-                <div class="position-relative">
-
-                    {% if posts.has_previous %}
-
-                        <div class="position-absolute top-0 start-0">
-                            <a href="?page={{posts.previous_page_number}}"><button  class="btn btn-outline-primary" type="button">Anterior</button></a>
-                        </div>
-                        
-                    {% endif %}
-
-                    {% if posts.has_next %}
-
-                        <div class="position-absolute top-0 end-0">
-                            <a href="?page={{posts.next_page_number}}"><button  class="btn btn-outline-primary" type="button">Siguiente</button></a>
-                        </div>
-                        
-                    {% endif %}
-                </div>                
-            </div>       
         </div>
+        {% endfor %}
+        <div class="mt-5">
+            <div class="position-relative">
+                {% if posts.has_previous %}
+                    <div class="position-absolute top-0 start-0">
+                        <a href="?page={{posts.previous_page_number}}"><button  class="btn btn-outline-primary" type="button">Anterior</button></a>
+                    </div>
+                {% endif %}
+                {% if posts.has_next %}
+                    <div class="position-absolute top-0 end-0" >
+                        <a href="?page={{posts.next_page_number}}"><button  class="btn btn-outline-primary" type="button">Siguiente</button></a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>      
+        <div class="mt-5">
+            <div class="mt-5">
+            
 
-                
 
-    {% endblock contenido %}
+
+
+{% endblock contenido %}

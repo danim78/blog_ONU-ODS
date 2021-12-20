@@ -12,17 +12,21 @@ class Categoria(models.Model):
         return self.titulo
 
 class Post(models.Model):
-    titulo = models.CharField(max_length=30)
-    contenido = models.TextField(max_length=300)
+    titulo = models.CharField(max_length=300)
+    contenido = models.TextField(max_length=10000)
     imagen = models.ImageField(upload_to="post/", null = True)
     autor = models.ForeignKey(User, on_delete = models.CASCADE, default=1)
     fecha_creado = models.DateTimeField(auto_now_add=True, null=True)
     fecha_modificado = models.DateTimeField(auto_now=True)
     categoria = models.ForeignKey(Categoria, on_delete = models.SET_NULL, null=True)
     permitir_comentarios = models.BooleanField(default = True)
-
+    
     def __str__(self):
         return self.titulo
+
+    def cant_comentarios(self):
+        cantidad_comentarios= self.comentario_set.all().count()
+        return cantidad_comentarios
 
 class Comentario(models.Model):
     mensaje = models.TextField(max_length=90)

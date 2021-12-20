@@ -12,6 +12,6 @@ Nuevo post
         <input type='submit'>
     </form>
     {% else %}
-        <h2>Es necesario <a href="/login">iniciar sesión</a> para crear o editar un post.</h2>
+        <h2>Es necesario <a href="{% url 'comentar' post.id %}">iniciar sesión</a> para crear o editar un post.</h2>
     {% endif %}
     {% endblock contenido %}

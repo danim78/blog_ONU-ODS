@@ -17,7 +17,7 @@ urlpatterns = [
     #borrar post
     path('post/<int:id>/borrar/', views.borrar_post, name="borrar_post"),
     #agregar comentarios
-    path('post/<int:id>/comentar/', views.comentar, name="comentar"),
+    path('post/<int:id>/', views.comentar, name="comentar"),
     # ver perfil
     path("perfil/<int:id>", views_pro.perfil, name="perfil"),
 ]

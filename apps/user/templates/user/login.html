@@ -7,12 +7,14 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-sm-10 col-md-3">
-                        {% if next %}
-                            <form action="" method="POST">
-                        {% else %}
-                            <form method="POST" action="{% url 'login' %}">
-                        {% endif %}
+                    {% if next %}
+                        <form action="" method="POST">
+                    {% else %}
+                        <form method="POST" action="{% url 'login' %}">
+                    {% endif %}
+
                         <input type="hidden" value="{{siguiente}}" name="next">
+                        
                         {% csrf_token %}
                         
                         <div class="text-center">
