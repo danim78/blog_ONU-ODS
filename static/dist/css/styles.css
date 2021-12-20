@@ -97,7 +97,6 @@
     color: #fff !important;
   }
 
-
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;

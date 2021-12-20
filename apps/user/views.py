@@ -20,8 +20,8 @@ def iniciar_sesion(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request,user)
-                pagina_siguiente = request.POST.get("next","/")
-                return redirect(pagina_siguiente)
+                siguiente = request.POST.get("next","/")
+                return redirect(siguiente)
     return render(request, "user/login.html",{
         "form":form,
         "siguiente":siguiente

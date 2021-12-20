@@ -13,6 +13,7 @@
                 {% else %}
                     <form method="POST" action="{% url 'login' %}">
                 {% endif %}
+                    <input type="hidden" value="{{siguiente}}" name="next">
                         {% csrf_token %}
                         {% for field in form %}
                             <div class="form-group">

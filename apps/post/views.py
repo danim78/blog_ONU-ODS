@@ -42,7 +42,7 @@ def agregar_post(request):
 
 
 def inicio(request):
-    posts = Post.objects.all().order_by("-fecha_creado")[0:2]
+    posts = Post.objects.all().order_by("-fecha_creado")[0:3]
     
     template = 'inicio.html'
     contexto = {
@@ -90,7 +90,7 @@ def listar_posts(request):
     else:
         posts = Post.objects.all()
     
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, 3)
     num_pagina = request.GET.get('page')
     pagina_actual = paginator.get_page(num_pagina)
 
@@ -116,7 +116,7 @@ def ver_post(request, id):
     try:
         post = Post.objects.get(pk=id)
     except:
-        return HttpResponse("<h2>No existe el post</h2>")
+        return redirect('/')
 
     comentarios = post.comentario_set.all().order_by("-fecha_creacion")
     form_comentario=ComentarioForm()
