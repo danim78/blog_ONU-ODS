@@ -15,16 +15,20 @@
                 {% endif %}
                     <input type="hidden" value="{{siguiente}}" name="next">
                         {% csrf_token %}
+                        <div class="unstyled">
+                        <small class="form-text text-danger">{{form.non_field_errors.as_text}}</small>
+                     </div>
                         {% for field in form %}
+                        
                             <div class="form-group">
                                 <label for="{{ field.id_for_label }}">{{field.html_name|capfirst}}</label>
                                 <input type="{{field.html_name}}" class="form-control" name="{{field.html_name}}">
-                                <small class="form-text text-muted">{{field.help_text}}</small>
                             </div>
                         {% endfor %}
                         <div class="text-center">
                             <input type="submit" class="btn btn-outline-primary mt-4" value = "Iniciar Sesión">
                         </div>
+
                         
                     </form>
                     <div class="text-center">
