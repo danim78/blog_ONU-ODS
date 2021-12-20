@@ -76,12 +76,12 @@ Posts
             <div class="position-relative">
                 {% if posts.has_previous %}
                     <div class="position-absolute top-0 start-0">
-                        <a href="?page={{posts.previous_page_number}}"><button  class="btn btn-outline-primary" type="button">Anterior</button></a>
+                        <a href="?page={{posts.previous_page_number}}?titulo={{search_form.titulo.value}}&orden={{search_form.titulo.value}}&categoria={{search_form.categoria.value}}"><button  class="btn btn-outline-primary" type="button">Anterior</button></a>
                     </div>
                 {% endif %}
                 {% if posts.has_next %}
                     <div class="position-absolute top-0 end-0" >
-                        <a href="?page={{posts.next_page_number}}"><button  class="btn btn-outline-primary" type="button">Siguiente</button></a>
+                        <a href="?page={{posts.next_page_number}}?titulo={{search_form.titulo.value}}&orden={{search_form.titulo.value}}&categoria={{search_form.categoria.value}}"><button  class="btn btn-outline-primary" type="button">Siguiente</button></a>
                     </div>
                 {% endif %}
             </div>
@@ -89,8 +89,6 @@ Posts
         <div class="mt-5">
             <div class="mt-5">
             
-
-
 
 
 {% endblock contenido %}
