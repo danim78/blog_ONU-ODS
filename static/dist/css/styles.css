@@ -72,7 +72,7 @@
 
 /* ACA MODIFICAMOS LOS COLORES DEL NAVAR */
 *  #mainNav {
-    background: rgba(29, 29, 29, 0.514) !important;
+    background: rgba(0, 0, 0, 0.50) !important;
     
   }
   /* COLOR LETRAS INICIO */
@@ -81,7 +81,7 @@
   }
   /* POSICION EN INICIO */
   #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-    color: rgb(0, 0, 0) !important;
+    color: #0085A1 !important;
   }
   /* COLOR LETRAS DER */
   #mainNav .navbar-nav > li.nav-item > a.nav-link {
@@ -89,7 +89,7 @@
   }
    /* POSICION EN DER */
   #mainNav .navbar-nav > li.nav-item > a.nav-link:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link:hover {
-    color: rgb(0, 0, 0) !important;
+    color: #0085A1 !important;
   }
   /* COLOR LETRAS MENU */
   #mainNav .navbar-toggler {

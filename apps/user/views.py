@@ -50,11 +50,12 @@ def nuevo_usuario(request):
         "form":form
     })
 
+
 def perfil(request, id):
     try:
         user = User.objects.get(pk=id)
     except:
-        return HttpResponse("<h2>No existe el post</h2>")
+        return redirect("/")
 
     posts = Post.objects.filter(autor = id)
     contexto = {

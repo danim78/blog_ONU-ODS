@@ -14,12 +14,12 @@ Borrar post
         <div class="text-center">
             <h1 class="display-6 my-3" >BORRAR POSTS</h1>
 
-            <h1>BORRAR POST: {{post.titulo}}</h1>
+            <h2>{{post.titulo}}</h2>
             <form action="{% url 'borrar_post' post.id %}" method="POST">
                 {% csrf_token %}
                 <p>Desea confirmar la eliminacion del post {{post.titulo}}?</p>
-                <a href="{% url 'ver_post' post.id %}">Cancelar</a>
-                <input type="submit" value="Aceptar">
+                <a class="btn btn-outline-primary" href="{% url 'ver_post' post.id %}">Cancelar</a>
+                <input class="btn btn-outline-primary" type="submit" value="Aceptar">
             </form>
 
 {% endblock contenido %}

@@ -12,13 +12,12 @@ Nuevo post
 <div class="container px-4 px-lg-">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="text-center">
-            <h1 class="display-6 my-3" >NUEVO POST</h1>
+            <h1 class="display-6 my-3" >EDITAR POST</h1>
 
 <form method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
-    <a href="{% url 'inicio' %}" class="btn btn-outline-primary">Cancelar</a>
+    <a href="{% url 'ver_post' post.id %}" class="btn btn-outline-primary">Cancelar</a>
     <input class="btn btn-outline-primary" type='submit' value="Guardar">
 </form>
-
 {% endblock contenido %}

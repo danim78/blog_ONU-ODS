@@ -150,10 +150,11 @@ def editar_post(request, id):
     else:
         return redirect('/')
 
-    template = "post/agregar_post.html"
+    template = "post/editar_post.html"
 
     contexto = {
-        "form":form
+        "form":form,
+        "post":post
     }
     return render(request, template, contexto)
 

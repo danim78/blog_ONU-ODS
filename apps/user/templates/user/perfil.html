@@ -10,7 +10,18 @@ Perfil - {{perfil.username}}
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="page-heading">
                     <h2>{{perfil.first_name}} {{perfil.last_name}}</h2>
-                    <span class="subheading">@{{perfil.username}}</span>
+                    <span class="subheading">
+                        <div>
+                            @{{perfil.username}}
+                        </div>
+                        <div>
+                            {% if perfil == user %}
+                                <div class="text-center">
+                                    <a href="{%url 'editar_usuario' %}" class="btn btn-outline-light btn-sm mt-5">Editar perfil</a><br>
+                                </div>
+                            {%endif%}
+                        </div>
+                    </span>
                 </div>
             </div>
         </div>
@@ -43,9 +54,7 @@ Perfil - {{perfil.username}}
     </div>
 </main>
 
-{% if perfil == user %}
-    <a href="{%url 'editar_usuario' %}">Editar perfil</a><br>
-{%endif%}
+
 
 
 {% endblock contenido %}
