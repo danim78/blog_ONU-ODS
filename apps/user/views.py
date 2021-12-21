@@ -4,7 +4,8 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, Us
 # Create your views here.
 from django.contrib.auth.models import User
 from apps.post.models import Post
-from apps.user.forms import EditarUsuarioForm, NuevoUsuarioForm
+from apps.user.forms import EditarUsuarioForm, NuevoUsuarioForm, PerfilUsuarioForm
+from apps.user.models import Perfil
 
 def iniciar_sesion(request):
     if request.user.is_authenticated:
@@ -71,13 +72,24 @@ def editar_usuario(request):
     if not request.user.is_authenticated:
         return redirect("login")
     user = request.user
-    form = EditarUsuarioForm(request.POST or None, instance=user)
-    if request.method == "POST":
-        if form.is_valid():
-            user = form.save()
-            return redirect("perfil", user.id)
-    return render(request, "user/editar_usuario.html",{
-        "form":form,
+    # form = EditarUsuarioForm(request.POST or None, instance=user)
+    # if request.method == "POST":
+    #     if form.is_valid():
+    #         user = form.save()
+    #         return redirect("perfil", user.id)
+    # return render(request, "user/editar_usuario.html",{
+    #     "form":form,
+    # })
+    perfil = Perfil.objects.get(usuario = request.user.id)
+    form = EditarUsuarioForm(request.POST, instance=request.user)
+    perfil_form = PerfilUsuarioForm(request.POST, instance=perfil)
+    if request.method == 'POST':        
+        if  form.is_valid() and perfil_form.is_valid():
+            form.save()
+            perfil_form.save()
+    return render(request, "user/editar_usuario.html", {
+        "form": form,
+        "perfil_form": perfil_form,
     })
 
 def editar_clave(request):
