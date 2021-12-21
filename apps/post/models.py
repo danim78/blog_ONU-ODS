@@ -24,7 +24,7 @@ class Post(models.Model):
         return self.titulo
 
     def cant_comentarios(self):
-        cantidad_comentarios= self.comentario_set.all().count()
+        cantidad_comentarios= Comentario.objects.filter(post= self.id).count()
         return cantidad_comentarios
 
 class Comentario(models.Model):

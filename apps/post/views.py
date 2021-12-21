@@ -83,7 +83,11 @@ def listar_posts(request):
         if orden_post == "titulo":
             posts= posts.order_by("titulo")
         elif orden_post == "comentarios":
-            posts= posts.order_by("-comentario")
+            lista = []
+            for post in posts:
+                if post.cant_comentarios() > 0:
+                    lista.append(post.id)
+            posts= posts.filter(id__in = lista)         #filtra los posts que tienen comentarios
         elif orden_post == "antiguo":
             posts= posts.order_by("fecha_creado")
         elif orden_post == "nuevo":
