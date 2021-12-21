@@ -72,9 +72,9 @@ def inicio(request):
 def listar_posts(request):
     search_form = BusquedaPost(request.GET or None)
     if search_form.is_valid():
-        filtro_titulo = search_form.cleaned_data.get("titulo")
-        orden_post = search_form.cleaned_data.get("orden")
-        param_categorias = search_form.cleaned_data.get("categoria")
+        filtro_titulo = request.GET.get("titulo", "")
+        orden_post = request.GET.get("orden", None)
+        param_categorias = request.GET.get("categoria")
 
         posts = Post.objects.filter(titulo__icontains = filtro_titulo)
 
