@@ -5,8 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Categoria(models.Model):
-    titulo = models.CharField(max_length=30)
-    descripcion = models.TextField()
+    titulo = models.CharField(max_length=45)
     
     def __str__(self):
         return self.titulo

@@ -133,16 +133,18 @@ def ver_post(request, id):
 
     return render(request, template, contexto)
 
-
+@login_required(login_url='login')
 def editar_post(request, id):
     post = Post.objects.get(pk=id)
     form = PostForm(request.POST or None, instance=post)
 
-    if request.method == "POST":
-        if form.is_valid():
-            post = form.save()
-            return redirect("ver_post", post.id)
-
+    if post.autor == request.user:
+        if request.method == "POST":
+            if form.is_valid():
+                post = form.save()
+                return redirect("ver_post", post.id)
+    else:
+        return redirect('/')
 
     template = "post/agregar_post.html"
 
@@ -151,12 +153,15 @@ def editar_post(request, id):
     }
     return render(request, template, contexto)
 
+@login_required(login_url='login')
 def borrar_post(request, id):
     post = Post.objects.get(pk=id)
-    if request.method == "POST":
-        post.delete()
-        return redirect("listar_posts")
-    
+    if post.autor == request.user:
+        if request.method == "POST":
+            post.delete()
+            return redirect("listar_posts")
+    else:
+        return redirect('/')
 
     template = "post/borrar_post.html"
 

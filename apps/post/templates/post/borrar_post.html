@@ -1,17 +1,25 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 
 {% block titulo %}
 Borrar post
 {% endblock titulo %}
 
 {% block contenido %}
+<br>
+<br>
+<br>
+<br>    
+<div class="container px-4 px-lg-">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="text-center">
+            <h1 class="display-6 my-3" >BORRAR POSTS</h1>
 
-    <h1>BORRAR POST: {{post.titulo}}</h1>
-    <form action="{% url 'borrar_post' post.id %}" method="POST">
-        {% csrf_token %}
-        <p>Desea confirmar la eliminacion del post {{post.titulo}}?</p>
-        <a href="{% url 'ver_post' post.id %}">Cancelar</a>
-        <input type="submit" value="Aceptar">
-    </form>
+            <h1>BORRAR POST: {{post.titulo}}</h1>
+            <form action="{% url 'borrar_post' post.id %}" method="POST">
+                {% csrf_token %}
+                <p>Desea confirmar la eliminacion del post {{post.titulo}}?</p>
+                <a href="{% url 'ver_post' post.id %}">Cancelar</a>
+                <input type="submit" value="Aceptar">
+            </form>
 
 {% endblock contenido %}
