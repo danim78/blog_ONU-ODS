@@ -12,7 +12,7 @@ Post
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="post-heading">
                     <h1> {{post.titulo}} </h1>
-                    <h2 class="subheading">{{post.categoria}}</h2>
+                    <h2 class="subheading"><a href="/posts/?titulo=&orden=nuevo&categoria={{post.categoria.id}}">{{post.categoria}}</a></h2>
                     <span class="meta">
                         <h7>Posteado por <a style="property:value;" href="{%url 'perfil' post.autor.id %}">{{post.autor}}</a> {{post.fecha_creado}}
                         </h7>

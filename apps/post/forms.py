@@ -34,6 +34,6 @@ class ComentarioForm(forms.ModelForm):
         model = Comentario
         fields = ("mensaje",)
     
-    # def __init__(self, *args, **kwargs):
-    #     super(ComentarioForm, self).init(*args, **kwargs)
-    #     self.fields["mensaje"].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Escriba su comentario', 'type' : 'text'})
+    def __init__(self, *args, **kwargs):
+        super(ComentarioForm, self).__init__(*args, **kwargs)
+        self.fields["mensaje"].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Escriba su comentario', 'type' : 'text'})

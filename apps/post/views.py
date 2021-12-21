@@ -79,7 +79,7 @@ def listar_posts(request):
         posts = Post.objects.filter(titulo__icontains = filtro_titulo)
 
         if param_categorias:
-            posts = posts.filter(categoria__id__in = param_categorias)
+            posts = posts.filter(categoria__id = param_categorias)  # era categoria__id__in y no funcionaba
         if orden_post == "titulo":
             posts= posts.order_by("titulo")
         elif orden_post == "comentarios":
