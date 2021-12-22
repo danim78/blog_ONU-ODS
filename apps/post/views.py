@@ -50,6 +50,12 @@ def inicio(request):
     }
     return render(request, template, contexto)
 
+def sobre_nosotros(request):
+
+    template = 'sobre_nosotros.html'
+    contexto = {
+    }
+    return render(request, template, contexto)
 
 '''def inicio(request):
      try:

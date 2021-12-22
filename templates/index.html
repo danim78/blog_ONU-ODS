@@ -27,6 +27,7 @@
                 <a class="navbar-brand" href="{% url 'inicio' %}">ONU-ODS</a>
                 <div class="collapse navbar-collapse" >
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'sobre_nosotros' %}">Sobre nosotros</a></li>
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'listar_posts' %}">Ir a Posts</a></li>
                         {% if not request.user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'nuevo_usuario' %}">Registrarse</a></li>
