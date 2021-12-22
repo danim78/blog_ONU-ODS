@@ -27,7 +27,6 @@ Perfil - {{perfil.username}}
         </div>
     </div>
 </header>
-
 <main class="mb-4">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -36,9 +35,8 @@ Perfil - {{perfil.username}}
                             <!-- Post preview-->
                             <div class="post-preview">
                                 <a href="{%url 'ver_post' post.id%}">
-                                    <h2 class="post-title">{{post.titulo}}</h2>
+                                    <h3 class="display-6 mt-3">{{post.titulo}}</h3>
                                 </a>
-                                
                                 <div class="post-meta">
                                     Categoria:
                                     <a href="/posts/?titulo=&orden=nuevo&categoria={{post.categoria.id}}">{{post.categoria}}</a><br>

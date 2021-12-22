@@ -1,53 +1,44 @@
 {% extends 'index.html' %}
-{% block titulo %}iniciar sesion{%endblock%}
+
+{% block titulo %}Iniciar sesion{%endblock%}
+
 {% block contenido %}
 <br>
 <br>
-    <div class="row mt-5">
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-sm-10 col-md-3">
-                    {% if next %}
-                        <form action="" method="POST">
-                    {% else %}
-                        <form method="POST" action="{% url 'login' %}">
-                    {% endif %}
-
-                        <input type="hidden" value="{{siguiente}}" name="next">
-                        
-                        {% csrf_token %}
-                        
-                        <div class="text-center">
-                            <h3 class="display-6 mt-3" >INICIAR SESION</h3>
-                        </div>
-                        <div class="mt-4">
-
-                            {% for field in form %}
-                                <div class="form-group">
-                                    <div class="text mt-4">
-                                        <label for="{{ field.id_for_label }}">{{field.html_name|capfirst}}</label>
-                                        <input type="{{field.html_name}}" class="form-control" name="{{field.html_name}}">
-                                    </div>
-                                </div>
-                            {% endfor %}
-
-
-                            <div class="unstyled">
-                                <small class="form-text text-danger">{{form.non_field_errors.as_text}}</small>
-                            </div>
-                            <div class="text-center mt-3">
-                                <input type="submit" class="btn btn-outline-primary mt-3" value = "Iniciar Sesión">
-                            </div>
-                        </div>
-                    </form>
+<div class="row mt-5">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-sm-10 col-md-3">
+                {% if next %}
+                    <form action="" method="POST">
+                {% else %}
+                    <form method="POST" action="{% url 'login' %}">
+                {% endif %}
+                    <input type="hidden" value="{{siguiente}}" name="next">
+                    {% csrf_token %}
                     <div class="text-center">
-                        <p class="mt-4" >¿No tienes cuenta? <a href="{% url 'nuevo_usuario' %}">Registrate</a></p>
+                        <h3 class="display-6 mt-3" >INICIAR SESION</h3>
                     </div>
+                    {% for field in form %}
+                    <div class="form-group">
+                        <div class="text mt-4">
+                            <label for="{{ field.id_for_label }}">{{field.html_name|capfirst}}</label>
+                            <input type="{{field.html_name}}" class="form-control" name="{{field.html_name}}">
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="unstyled">
+                        <small class="form-text text-danger">{{form.non_field_errors.as_text}}</small>
+                    </div>
+                    <div class="text-center mt-3">
+                        <input type="submit" class="btn btn-outline-primary mt-3" value = "Iniciar Sesión">
+                    </div>
+                </form>
+                <div class="text-center">
+                    <p class="mt-4" >¿No tienes cuenta? <a href="{% url 'nuevo_usuario' %}">Registrate</a></p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
-
------------------------------------------------------------------------------------------------------------------
-

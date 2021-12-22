@@ -5,21 +5,32 @@ Borrar post
 {% endblock titulo %}
 
 {% block contenido %}
-<br>
-<br>
-<br>
-<br>    
-<div class="container px-4 px-lg-">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="text-center">
-            <h1 class="display-6 my-3" >BORRAR POSTS</h1>
 
-            <h2>{{post.titulo}}</h2>
-            <form action="{% url 'borrar_post' post.id %}" method="POST">
-                {% csrf_token %}
-                <p>Desea confirmar la eliminacion del post {{post.titulo}}?</p>
-                <a class="btn btn-outline-primary" href="{% url 'ver_post' post.id %}">Cancelar</a>
-                <input class="btn btn-outline-primary" type="submit" value="Aceptar">
-            </form>
 
+<br>
+<br>
+<br>
+<br>
+<div class="row" >
+    <div class="container px-4 px-lg-">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="text-center">
+                <h1 class="display-6 my-3" >BORRAR POSTS</h1>
+                <h>{{post.titulo}}</h>
+                <form action="{% url 'borrar_post' post.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="post-preview">
+                        <div class="post-meta">
+                            <h>Desea confirmar la eliminacion del post <b>"{{post.titulo}}"</b>?</h>
+                        </div>
+                    </div>
+                    <div class="text-center mb-4 mt-4">
+                        <a class="btn btn-outline-primary" href="{% url 'ver_post' post.id %}">Cancelar</a>
+                        <input class="btn btn-outline-primary" type="submit" value="Aceptar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock contenido %}

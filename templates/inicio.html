@@ -9,7 +9,7 @@ BLOG ONU-ODS
 <header class="masthead" style="background-image: url('static/dist/assets/img/home1.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">   
-            <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="col-md-10 col-lg-8 col-xl-8">
                 <div class="site-heading">
                     <div class="text-align-right">
                         <h1>ONU-ODS</h1>
@@ -20,26 +20,25 @@ BLOG ONU-ODS
         </div>
     </div>
 </header>
-<br>
 <div class="container px-4 px-lg-">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="text-center">
             <hr class="my-5" />
-            <article class="mb-2">
-                <div class="container px-4 px-lg-5">
-                    <div class="row gx-4 gx-lg-5 justify-content-center">
-                        <div class="col-md-10 col-lg-8 col-xl-7">
-                            <h3 class="display-6 mt-3" >OBJETIVOS DE DESARROLLO SOSTENIBLE</h3>
-                            <p>El 25 de septiembre de 2015, los líderes mundiales adoptaron un conjunto de objetivos globales para erradicar la pobreza, proteger el planeta y asegurar la prosperidad para todos como parte de una nueva agenda de desarrollo sostenible.</p>
-                            <p>Cada objetivo tiene metas específicas que deben alcanzarse en los próximos 15 años. Para alcanzar estas metas, todo el mundo tiene que hacer su parte: los gobiernos, el sector privado, la sociedad civil y personas como usted. </p>
-                            <p>¿Quieres participar? Puedes empezar a debatir junto a todos acerca de estos objetivos en este blog.</p>
-                            <ul> Comienza haciendo un <n><a href="{% url 'agregar_post' %}"> NUEVO POST </a></n></ul>
+                <article>
+                    <div class="container px-4 px-lg-5">
+                        <div class="row gx-4 gx-lg-5 justify-content-center">
+                            <div class="col-md-10 col-lg-8 col-xl-7">
+                                <h3 class="display-6 mt-4" >OBJETIVOS DE DESARROLLO SOSTENIBLE</h3>
+                                <p>El 25 de septiembre de 2015, los líderes mundiales adoptaron un conjunto de objetivos globales para erradicar la pobreza, proteger el planeta y asegurar la prosperidad para todos como parte de una nueva agenda de desarrollo sostenible.</p>
+                                <p>Cada objetivo tiene metas específicas que deben alcanzarse en los próximos 15 años. Para alcanzar estas metas, todo el mundo tiene que hacer su parte: los gobiernos, el sector privado, la sociedad civil y personas como usted. </p>
+                                <p>¿Quieres participar? Puedes empezar a debatir junto a todos acerca de estos objetivos en este blog.</p>
+                                <ul> Comienza haciendo un <b><a href="{% url 'agregar_post' %}"> nuevo post. </a></b></ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
+                </article>
             <hr class="my-5" />
-            <h3 class="display-6 mt-3" >POSTS RECIENTES</h3>
+                <h3 class="display-6 mt-3" >POSTS RECIENTES</h3>
             <hr class="my-5" />
         </div>
         {% for post in posts %}
@@ -72,4 +71,6 @@ BLOG ONU-ODS
                 </div>     
             </div>
         </div>
+    </div>
+</div>
 {% endblock contenido %}
