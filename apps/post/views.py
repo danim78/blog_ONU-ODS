@@ -127,7 +127,7 @@ def ver_post(request, id):
     try:
         post = Post.objects.get(pk=id)
     except:
-        return redirect('/')
+        return redirect('/404')
 
     comentarios = post.comentario_set.all().order_by("-fecha_creacion")
     form_comentario=ComentarioForm()

@@ -55,7 +55,7 @@ def perfil(request, id):
     try:
         user = User.objects.get(pk=id)
     except:
-        return redirect("/")
+        return redirect("/404")
 
     posts = Post.objects.filter(autor = id)
     contexto = {
