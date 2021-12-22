@@ -17,19 +17,19 @@
                 <div class="form-group">
                     <div class="text mt-4">
                         <label for="{{ form.username.id_for_label }}">Usuario</label>
-                        <input type="text" class="form-control text-muted" placeholder="{{form.username}}
+                        <input type="text" class="form-control text-muted" name="{{form.username.html_name}}" value="{{form.username.value}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="text mt-4">
                         <label for="{{ form.first_name.id_for_label }}">Nombre</label>
-                        <input type="text" class="form-control text-muted" name="{{form.first_name.html_name}}" placeholder="{{form.first_name}}
+                        <input type="text" class="form-control text-muted" name="{{form.first_name.html_name}}" value="{{form.first_name.value}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="text mt-4">
                         <label for="{{ form.last_name.id_for_label }}">Apellido</label>
-                        <input type="text" class="form-control text-muted" name="{{form.last_name.html_name}}" placeholder="{{form.last_name}}
+                        <input type="text" class="form-control text-muted" name="{{form.last_name.html_name}}" value="{{form.last_name.value}}">
                     </div>
                 </div>
                 <div class="form-group">
