@@ -9,83 +9,87 @@ Post
 <header class="masthead" style="background-image: url('{{post.imagen.url}}')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="col-md-10 col-lg-8 col-xl-8">
                 <div class="post-heading">
-                    <h1> {{post.titulo}} </h1>
-                    <h2 class="subheading">{{post.categoria}}</h2>
-                    <span class="meta">
-                        <h7>Posteado por <a style="property:value;" href="{%url 'perfil' post.autor.id %}">{{post.autor}}</a> {{post.fecha_creado}}
-                        </h7>
-                        <p>
-                    </span>
+                    <h3 class="display-4 my-3">{{post.titulo}}</h3>
+                    <div class="meta">
+                        <b><a href="/posts/?titulo=&orden=nuevo&categoria={{post.categoria.id}}">{{post.categoria}}</a></b><br>
+                        <h>Posteado por <b><a href="{%url 'perfil' post.autor.id %}">{{post.autor}}</a></b> {{post.fecha_creado}}
+                        </h>
+                    </div>
+                    <div>
+                        {% if post.autor == user %}
+                            <a href="{%url 'editar_post' post.id %}" class="btn btn-outline-light btn-sm mt-4">Editar post</a>
+                            <a href="{%url 'borrar_post' post.id %}" class="btn btn-outline-light btn-sm mt-4">Borrar post</a>
+                        {%endif%}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
  <!-- Post Content-->
- <article class="mb-4">
+<article class="mb-5">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                    <p>{{post.contenido}}</p>
-
-
-    {% if post.autor == user %}
-        <a href="{%url 'editar_post' post.id %}">Editar post</a><br>
-        <a href="{%url 'borrar_post' post.id %}">Borrar post</a><br>
-    {%endif%}
-    {% if post.permitir_comentarios %}
-        {% if user.is_authenticated %}
-            <form method="POST" action="{% url 'comentar' post.id %}">
-                {% csrf_token %}
-                <div class="row">
-                <div class="input-field col s12">
-                    <br>
-                    <h7>Realiza un Comentario:</h7>
-                    <br>
-                    <div class="mb-3">
-                        {{ form_comentario.mensaje }}
+            <div class="col-md-10 col-lg-8 col-xl-8">
+                <div class="mb-5 mt-3">
+                    {{post.contenido}}
+                </div>
+                {% if post.permitir_comentarios %}
+                    {% if user.is_authenticated %}
+                        <form method="POST" action="{% url 'comentar' post.id %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="input-field col s12">
+                                        <div class="mb-2">
+                                            <a>Realiza un Comentario: </a>
+                                        </div>
+                                    <div>
+                                        {{ form_comentario.mensaje }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-4">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <input type="submit" class="btn btn-outline-primary" value="Comentar">
+                                </div>
+                            </div>
+                        </form>
+                    {% else %}
+                        <div class="post-preview">
+                            <div class="post-meta">
+                                <div class="card card-header">
+                                    <h>Es necesario<b><a href="/login/?next=/post/{{post.id}}"> iniciar sesión </a></b>para realizar comentarios.</h>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if cantidad_comentarios > 0 %}
+                        <div class="card card-header mt-5 mb-2">COMENTARIOS</div>
+                        {% for comentario in comentarios %}
+                        <div class="card">
+                            <h class="card-header"><a href="{%url 'perfil' comentario.username.id %}">{{comentario.username}}</a></h>
+                            <div class="card-body">
+                                <p class="card-text">{{comentario.mensaje}}</p>
+                                <h class="blockquote-footer">Comentado el {{comentario.fecha_creacion}}</h>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <div class="card card-header">
+                        <h>Nadie ha comentado.</h>
                     </div>
-
-
+                    {% endif %}
+                {% else %}
+                <div class="card card-header">
+                    <h>No se permiten comentarios para este post.</h>
                 </div>
-                </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <input type="submit" class="btn btn-outline-primary" value="Comentar">
-                </div>
-            </form>
-        {% else %}
-
-        
-            <div class="post-preview">
-                <div class="post-meta">
-                    <h7>Es necesario</h7>
-                    <b><a href="/login/?next=/post/{{post.id}}">iniciar sesión</a></b>
-                    <h7>para realizar comentarios.</h7>
-                </div>
+                {% endif %}
             </div>
-
-        {% endif %}
-        
-        <br>
-        {% if cantidad_comentarios > 0 %}
-            <h6>COMENTARIOS:</h6>
-            {% for comentario in comentarios %}
-              <div class="card">
-                <div class="card-body">
-                  <a href="{%url 'perfil' comentario.username.id %}"><h5 class="card-title">{{comentario.username}}</h5></a>
-                  <p class="card-text">{{comentario.mensaje}}</p>
-                  <p class="card-text"><small class="text-muted">{{comentario.fecha_creacion}}</small></p>
-                </div>
-              </div>
-            {% endfor %}
-        {% else %}
-            <h7>Nadie ha comentado.</h7>
-        {% endif %}
-    {% else %}
-        <h7>No se permiten comentarios para este post.</h7><br>
-    {% endif %}
+        </div>
+    </div>
+</article>
 
 
 {% endblock contenido %}

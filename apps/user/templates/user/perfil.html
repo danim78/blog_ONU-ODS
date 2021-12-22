@@ -10,13 +10,23 @@ Perfil - {{perfil.username}}
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="page-heading">
                     <h2>{{perfil.first_name}} {{perfil.last_name}}</h2>
-                    <span class="subheading">@{{perfil.username}}</span>
+                    <span class="subheading">
+                        <div>
+                            @{{perfil.username}}
+                        </div>
+                        <div>
+                            {% if perfil == user %}
+                                <div class="text-center">
+                                    <a href="{%url 'editar_usuario' %}" class="btn btn-outline-light btn-sm mt-5">Editar perfil</a><br>
+                                </div>
+                            {%endif%}
+                        </div>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
 <main class="mb-4">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -25,9 +35,8 @@ Perfil - {{perfil.username}}
                             <!-- Post preview-->
                             <div class="post-preview">
                                 <a href="{%url 'ver_post' post.id%}">
-                                    <h2 class="post-title">{{post.titulo}}</h2>
+                                    <h3 class="display-6 mt-3">{{post.titulo}}</h3>
                                 </a>
-                                
                                 <div class="post-meta">
                                     Categoria:
                                     <a href="/posts/?titulo=&orden=nuevo&categoria={{post.categoria.id}}">{{post.categoria}}</a><br>
@@ -43,9 +52,7 @@ Perfil - {{perfil.username}}
     </div>
 </main>
 
-{% if perfil == user %}
-    <a href="{%url 'editar_usuario' %}">Editar perfil</a><br>
-{%endif%}
+
 
 
 {% endblock contenido %}

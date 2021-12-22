@@ -12,9 +12,9 @@ Nuevo post
 <div class="row" >
     <div class="container px-4 px-lg-">
         <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-sm-10 col-md-4">
+            <div class="col-sm-10 col-md-5">
                 <div class="text-center">
-                    <h1 class="display-6 my-3" >NUEVO POST</h1>
+                    <h1 class="display-6 my-3">EDITAR POST</h1>
                 </div>
                 <form method="POST" action="" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -50,15 +50,15 @@ Nuevo post
                                 <div class="mb-2">
                                     <a>Selecciona una imagen: </a>
                                 </div>
-                                Imagen: {{form.imagen}}
+                                {{form.imagen}}
                             </div>
                         </div>
                     </div>
                     <div class="text-center mt-5 mb-5">
-                        <a href="{% url 'inicio' %}" class="btn btn-outline-primary">Cancelar</a>
-                        <input class="btn btn-outline-primary" type='submit' value="Guardar">
-                    </div>
+                    <a href="{% url 'ver_post' post.id %}" class="btn btn-outline-primary">Cancelar</a>
+                    <input class="btn btn-outline-primary" type='submit' value="Guardar">
                 </form>
+                </div>
             </div>
         </div>
     </div>

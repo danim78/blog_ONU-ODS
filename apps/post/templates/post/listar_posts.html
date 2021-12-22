@@ -12,37 +12,29 @@ Posts
 <div class="container px-4 px-lg-">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="text-center">
-            <h3 class="display-6 my-3" >BUSCAR POSTS</h3>
+            <h1 class="display-6 my-3" >BUSCAR POSTS</h1>
             <form method = "GET" action=""> 
                 <div class="container mt-5">
                     <ul class="nav justify-content-center">
                         <li class="nav-item" aria-label=".form-control-lg example">
-                            <div class="h-100 d-inline-block">
-                                {{search_form.titulo}}
-                            </div>
+                            {{search_form.titulo}}        
                         </li>
                         <li class="nav-item">
                             <div class="btn-group">
-                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Orden
-                                </button>
-                                <ul class="dropdown-menu">
+                                <div class="text-center">
                                     {{search_form.orden}}
-                                </ul>
+                                </div>
                             </div>
                         </li>
                         <li class="nav-item">
                             <div class="btn-group">
-                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Categoria
-                                </button>
-                                <ul class="dropdown-menu">
+                                <div class="text-center">
                                     {{search_form.categoria}}
-                                </ul>
+                                </div>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <input class="btn btn-outline-primary dropdown-toggle" type='submit' value="Buscar">
+                            <input class="btn btn-outline-primary dropdown-toggle btn-lg" type='submit' value="Buscar">
                         </li>
                     </ul>
                 </div>  
@@ -76,12 +68,12 @@ Posts
             <div class="position-relative">
                 {% if posts.has_previous %}
                     <div class="position-absolute top-0 start-0">
-                        <a href="{% url 'listar_posts' %}?page={{posts.previous_page_number}}&titulo={{search_form.titulo.value}}&orden={{search_form.orden.value}}&categoria={{search_form.categoria.value}}"><button  class="btn btn-outline-primary" type="button">Anterior</button></a>
+                        <a href="{% url 'listar_posts' %}?page={{posts.previous_page_number}}&titulo={{search_form.titulo.value|default_if_none:''}}&orden={{search_form.orden.value}}&categoria={{search_form.categoria.value|default_if_none:''}}"><button  class="btn btn-outline-primary" type="button">Anterior</button></a>
                     </div>
                 {% endif %}
                 {% if posts.has_next %}
                     <div class="position-absolute top-0 end-0" >
-                        <a href="{% url 'listar_posts' %}?page={{posts.next_page_number}}&titulo={{search_form.titulo.value}}&orden={{search_form.orden.value}}&categoria={{search_form.categoria.value}}"><button  class="btn btn-outline-primary" type="button">Siguiente</button></a>
+                        <a href="{% url 'listar_posts' %}?page={{posts.next_page_number}}&titulo={{search_form.titulo.value|default_if_none:''}}&orden={{search_form.orden.value}}&categoria={{search_form.categoria.value|default_if_none:''}}"><button  class="btn btn-outline-primary" type="button">Siguiente</button></a>
                     </div>
                 {% endif %}
             </div>

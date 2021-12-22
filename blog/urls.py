@@ -27,4 +27,5 @@ urlpatterns = [
     #path('post/',views.listar_posts, name='post'),
     path('',include('apps.post.urls')),
     path('',include('apps.user.urls')),
+    path("nosotros", views.sobre_nosotros, name="sobre_nosotros"),
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

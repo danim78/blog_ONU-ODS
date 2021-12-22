@@ -50,6 +50,12 @@ def inicio(request):
     }
     return render(request, template, contexto)
 
+def sobre_nosotros(request):
+
+    template = 'sobre_nosotros.html'
+    contexto = {
+    }
+    return render(request, template, contexto)
 
 '''def inicio(request):
      try:
@@ -79,11 +85,15 @@ def listar_posts(request):
         posts = Post.objects.filter(titulo__icontains = filtro_titulo)
 
         if param_categorias:
-            posts = posts.filter(categoria__id__in = param_categorias)
+            posts = posts.filter(categoria__id = param_categorias)  # era categoria__id__in y no funcionaba
         if orden_post == "titulo":
             posts= posts.order_by("titulo")
         elif orden_post == "comentarios":
-            posts= posts.order_by("-comentario")
+            lista = []
+            for post in posts:
+                if post.cant_comentarios() > 0:
+                    lista.append(post.id)
+            posts= posts.filter(id__in = lista)         #filtra los posts que tienen comentarios
         elif orden_post == "antiguo":
             posts= posts.order_by("fecha_creado")
         elif orden_post == "nuevo":
@@ -117,7 +127,7 @@ def ver_post(request, id):
     try:
         post = Post.objects.get(pk=id)
     except:
-        return redirect('/')
+        return redirect('/404')
 
     comentarios = post.comentario_set.all().order_by("-fecha_creacion")
     form_comentario=ComentarioForm()
@@ -133,30 +143,36 @@ def ver_post(request, id):
 
     return render(request, template, contexto)
 
-
+@login_required(login_url='login')
 def editar_post(request, id):
     post = Post.objects.get(pk=id)
     form = PostForm(request.POST or None, instance=post)
 
-    if request.method == "POST":
-        if form.is_valid():
-            post = form.save()
-            return redirect("ver_post", post.id)
+    if post.autor == request.user:
+        if request.method == "POST":
+            if form.is_valid():
+                post = form.save()
+                return redirect("ver_post", post.id)
+    else:
+        return redirect('/')
 
-
-    template = "post/agregar_post.html"
+    template = "post/editar_post.html"
 
     contexto = {
-        "form":form
+        "form":form,
+        "post":post
     }
     return render(request, template, contexto)
 
+@login_required(login_url='login')
 def borrar_post(request, id):
     post = Post.objects.get(pk=id)
-    if request.method == "POST":
-        post.delete()
-        return redirect("listar_posts")
-    
+    if post.autor == request.user:
+        if request.method == "POST":
+            post.delete()
+            return redirect("listar_posts")
+    else:
+        return redirect('/')
 
     template = "post/borrar_post.html"
 

@@ -5,8 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Categoria(models.Model):
-    titulo = models.CharField(max_length=30)
-    descripcion = models.TextField()
+    titulo = models.CharField(max_length=45)
     
     def __str__(self):
         return self.titulo
@@ -25,7 +24,7 @@ class Post(models.Model):
         return self.titulo
 
     def cant_comentarios(self):
-        cantidad_comentarios= self.comentario_set.all().count()
+        cantidad_comentarios= Comentario.objects.filter(post= self.id).count()
         return cantidad_comentarios
 
 class Comentario(models.Model):
