@@ -19,6 +19,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from apps.post import views
 from django.conf.urls.static import static
+from django.views.static import serve
+from django.conf.urls import url
 
 from blog.settings import MEDIA_ROOT
 
@@ -28,4 +30,6 @@ urlpatterns = [
     path('',include('apps.post.urls')),
     path('',include('apps.user.urls')),
     path("nosotros", views.sobre_nosotros, name="sobre_nosotros"),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
