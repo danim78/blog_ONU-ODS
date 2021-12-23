@@ -81,13 +81,13 @@ def editar_usuario(request):
     #     "form":form,
     # })
     perfil = request.user.perfil #Perfil.objects.get(usuario = request.user.id)
-    form = EditarUsuarioForm(request.POST, instance=request.user)
+    form = EditarUsuarioForm(request.POST or None, instance=user)
     perfil_form = PerfilUsuarioForm(request.POST, request.FILES, instance=perfil)
     if request.method == 'POST':        
         if  form.is_valid() and perfil_form.is_valid():
             user = form.save()
             perfil = perfil_form.save()
-            return redirect("perfil", user.id)
+            return redirect("perfil", perfil.id)
     return render(request, "user/editar_usuario.html", {
         "form": form,
         "perfil_form": perfil_form,
