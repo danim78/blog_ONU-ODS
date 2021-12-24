@@ -12,7 +12,7 @@
                 <div class="text-center">
                     <h3 class="display-6 mt-3">EDITAR PERFIL</h3>
                 </div>
-                <form method="POST" action="">
+                <form method="POST" action=""enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
                     <div class="text mt-4">
@@ -30,6 +30,12 @@
                     <div class="text mt-4">
                         <label for="{{ form.last_name.id_for_label }}">Apellido</label>
                         <input type="text" class="form-control text-muted" name="{{form.last_name.html_name}}" value="{{form.last_name.value}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text mt-4">
+                        <img src="{{user.perfil.img_perfil.url}}" height="50px" alt="">
+                    {{perfil_form.as_p}}
                     </div>
                 </div>
                 <div class="form-group">
